@@ -450,62 +450,62 @@ AND THE COMMITTEE ON GRADUATE STUDIES}
 \setlength{\signaturespace}{.5in}
 
 
-\long\def\signature#1{%
-\begin{flushright}
-\begin{minipage}{5in}
-\parindent=0pt
-I certify that I have read this dissertation and that, in my opinion,
-it is fully adequate in scope and quality as a dissertation for the degree
-of BACHELOR OF ENGINEERING.
-\par
-\vspace{\signaturespace}
+%\long\def\signature#1{%
+%\begin{flushright}
+%\begin{minipage}{5in}
+%\parindent=0pt
+%I certify that I have read this dissertation and that, in my opinion,
+%it is fully adequate in scope and quality as a dissertation for the degree
+%of BACHELOR OF ENGINEERING.
+%\par
+%\vspace{\signaturespace}
 %\hbox to 4in{\hfil\shortstack{\vrule width 3in height 0.4pt\\ #1}}
-\hbox to 5in{\hfil\begin{tabular}{@{}l@{}}\vrule width 3in height
-    0.4pt depth 0pt\\ #1\end{tabular}}
-\end{minipage}
-\end{flushright}}
+%\hbox to 5in{\hfil\begin{tabular}{@{}l@{}}\vrule width 3in height
+%    0.4pt depth 0pt\\ #1\end{tabular}}
+%\end{minipage}
+%\end{flushright}}
 
-\long\def\ucgssignature{%
-\begin{flushright}
-\begin{minipage}{5in}
-\parindent=0pt
-\hfill Approved for the University of Leeds Committee on Graduate Studies
-\par
-\vspace{\signaturespace}
-\hbox to 5in{\hfil\begin{tabular}{@{}l@{}}\vrule width 3in height
-    0.4pt depth 0pt\end{tabular}}
-\end{minipage}
-\end{flushright}}
+%\long\def\ucgssignature{%
+%\begin{flushright}
+%\begin{minipage}{5in}
+%\parindent=0pt
+%\hfill Approved for the University of Leeds Committee on Graduate Studies
+%\par
+%\vspace{\signaturespace}
+%\hbox to 5in{\hfil\begin{tabular}{@{}l@{}}\vrule width 3in height
+%    0.4pt depth 0pt\end{tabular}}
+%\end{minipage}
+%\end{flushright}}
 
 
-\def\signaturepage{% 
-\ifonline
-\setcounter{page}{0}
-\def\thepage{}
-\thispagestyle{myheadings}
-\markboth{\rm \@author}{\rm \@author}\fi
-\signature{(\@principaladviser)\quad Principal \advis@r}
-  \vfill
+%\def\signaturepage{% 
+%\ifonline
+%\setcounter{page}{0}
+%\def\thepage{}
+%\thispagestyle{myheadings}
+%\markboth{\rm \@author}{\rm \@author}\fi
+%\signature{(\@principaladviser)\quad Principal \advis@r}
+%  \vfill
 % if second principal advisor
-        \if*\@coprincipaladviser \else
-        \signature{(\@coprincipaladviser)\quad Principal \advis@r}
-        \vfill\fi
-        \if*\@firstreader \else 
-        \signature{(\@firstreader)}
-        \vfill\fi
-        \if*\@secondreader \else 
-        \signature{(\@secondreader)}
-        \vfill\fi
+%        \if*\@coprincipaladviser \else
+%        \signature{(\@coprincipaladviser)\quad Principal \advis@r}
+%        \vfill\fi
+%        \if*\@firstreader \else 
+%        \signature{(\@firstreader)}
+%        \vfill\fi
+%        \if*\@secondreader \else 
+%        \signature{(\@secondreader)}
+%        \vfill\fi
 % if thirdreader then do \signature\@thirdreader \vfill
-        \if*\@thirdreader \else 
-        \signature{(\@thirdreader)}
-        \vfill\fi
+%        \if*\@thirdreader \else 
+%        \signature{(\@thirdreader)}
+%        \vfill\fi
 % if fourthreader then do \signature\@fourthreader \vfill
-        \if*\@fourthreader \else 
-        \signature{(\@fourthreader)}
-        \vfill\fi
-\ucgssignature
-}
+%        \if*\@fourthreader \else 
+%        \signature{(\@fourthreader)}
+%        \vfill\fi
+%\ucgssignature
+%}
 
 \def\onlinesignature{
 \cleardoublepage
