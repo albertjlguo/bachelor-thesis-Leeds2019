@@ -1,4 +1,4 @@
-% Stanford University PhD thesis style -- modifications to the report style
+% University of Leeds PhD thesis style -- modifications to the report style
 % This is unofficial so you should always double check against the
 % Registrar's office rules
 %
@@ -103,7 +103,7 @@
 %   \end{document} 
 
 % Modified May 2014 by Emma Pease
-%   fixed error in the signature page (Stanford University Committee not just University Committee)
+%   fixed error in the signature page (University of Leeds Committee not just University Committee)
 
 %%%%%
 %%%%%   PRELIMS
@@ -152,10 +152,8 @@ suthesis documentation.}}{}
 
   Example of use:
     \documentclass{report}
-
-\usepackage{suthesis-2e}
-\dept{Computer Science}
-
+    \usepackage{suthesis-2e}
+    \dept{Electronic and Electrical Engineering}
 
     \begin{document}
     \title{How to Write Theses\\
@@ -205,7 +203,7 @@ Documentation:
         \title{thesis title}
         \author{author's name}
         \dept{author's department}
-                - Computer Science if omitted
+                - Electronic and Electrical Engineering if omitted
 The following switches allow for special title pages (not all are current)
         \committeethesis - for a thesis in a committee (no dept.)
                            use \dept{committee name}
@@ -331,7 +329,7 @@ smaller print.
 % needed only for dual language departments to choose the language
 \def\languagemajor#1{\gdef\@languagemajor{#1}} \def\@language{babel}
 \def\jointprogram#1{\gdef\@jointprogram{#1}}
-\def\@title{}\def\@author{}\def\@dept{computer science}
+\def\@title{}\def\@author{}\def\@dept{Electronic and Electrical Engineering}
 \def\@principaladviser{}\def\@firstreader{*}\def\@secondreader{*}
 \def\@coprincipaladviser{*}
 \def\@thirdreader{*}
@@ -358,8 +356,7 @@ smaller print.
 \figurespagetrue \tablespagetrue
 
 
-\def\@standardsub{submitted to the department of \uppercase\expandafter{\@dept}\\
-                and the committee on graduate studies}
+\def\@standardsub{submitted to the school of \uppercase\expandafter{\@dept}}
 \def\@standardend{}
 
 \def\committeethesis{\let\@whichsub=\@committeesub}
@@ -414,18 +411,13 @@ AND THE COMMITTEE ON GRADUATE STUDIES}
         \vfill
         \begin{center}
 \large
-%                \sc a dissertation\\
-%                \lowercase\expandafter{\@whichsub}\\
-%                of stanford university\\
-%                in partial fulfillment of the requirements\\
-%                for the degree of\\
-%                doctor of philosophy \uppercase\expandafter{\@whichend}
-                A DISSERTATION\\
+
+                AN ELEC3875 INDIVIDUAL ENGINEERING PROJECT FINAL REPORT \\
                 \uppercase\expandafter{\@whichsub}\\
-                OF STANFORD UNIVERSITY\\
+                OF UNIVERSITY OF LEEDS\\
                 IN PARTIAL FULFILLMENT OF THE REQUIREMENTS\\
                 FOR THE DEGREE OF\\
-                DOCTOR OF PHILOSOPHY \uppercase\expandafter{\@whichend}
+                BACHELOR OF ENGINEERING \uppercase\expandafter{\@whichend}
         \end{center}
         \vfill
         \begin{center}
@@ -464,7 +456,7 @@ AND THE COMMITTEE ON GRADUATE STUDIES}
 \parindent=0pt
 I certify that I have read this dissertation and that, in my opinion,
 it is fully adequate in scope and quality as a dissertation for the degree
-of Doctor of Philosophy.
+of BACHELOR OF ENGINEERING.
 \par
 \vspace{\signaturespace}
 %\hbox to 4in{\hfil\shortstack{\vrule width 3in height 0.4pt\\ #1}}
@@ -477,7 +469,7 @@ of Doctor of Philosophy.
 \begin{flushright}
 \begin{minipage}{5in}
 \parindent=0pt
-\hfill Approved for the Stanford University Committee on Graduate Studies
+\hfill Approved for the University of Leeds Committee on Graduate Studies
 \par
 \vspace{\signaturespace}
 \hbox to 5in{\hfil\begin{tabular}{@{}l@{}}\vrule width 3in height
