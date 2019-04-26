@@ -10,7 +10,9 @@
 \usepackage{suthesis-2e}
 \dept{Electronic and Electrical Engineering}
 
+\usepackage{hyperref}
 \usepackage{graphicx}
+
 \begin{document}
 \title{CENTRALISED CONTROL ALGORITHMS FOR SMART GRID OPERATION}
 \author{Jialeng Guo}
@@ -57,9 +59,10 @@ Nowadays, non-renewable resource still consists of a large proportion in the ene
 
 \subsubsection{B. Climate Change}
 According to the paper from Nature, climate change happened in the past 70 years. It has already had effects on the environment around us. Glaciers are shrinking and ices are breaking up earlier on lakes and rivers. Most climate scientists agree with that it is the human expansion that causes the global warming. As we know, carbon dioxide (CO2) is a significant component of the atmosphere.Atmospheric CO2 concentration has been increased by more than a third since the Industrial Revolution began. More importantly, atmospheric carbon dioxide has exceeded the highest level in the past 400,000 years.\\
+
 \begin{figure}
 \centering
-\includegraphics[width = .618\textwidth]{Figure/nasa_co2.jpeg}
+\includegraphics[width = .999\textwidth]{Figure/nasa_co2.jpeg}
 \caption{This graph provides evidence that atmospheric CO2 has increased since the Industrial Revolution began. Image courtesy: https://climate.nasa.gov/evidence/}
 \label{nasa_co2}
 \end{figure}
@@ -124,18 +127,23 @@ The contributions of this thesis are summarised as follows:\\
 \part{Algorithm}
 \chapter{An Overview of Frequency Control}
 \section{Overview}
-\begin{figure}
+
+Every country has its nominal frequency of the oscillations of alternating current in an electric power grid transmitted from a power station to the end-user. For instance, the nominal value is 50Hz in the UK while it’s 60Hz in USA.\\
+
+However, if a load is suddenly connected or disconnected to the system, or if the protection equipment suddenly disconnects a generating, there will be a distortion in the power balance between that delivered by the turbines and that consumed by the loads. This imbalance is initially covered from the kinetic energy of rotating rotors of turbines, generators and motors and, as a result, the frequency in the system will change. \\
+
+If there is a mismatch between the generation and the demand, for instance, due to the outage of one generating unit, then the frequency starts to drop down. \\
+
+If no control is applied, the frequency largely deviates and then reaches a meagre and steady-state value, due to which the electrical grid is shut down.\\
+
+\begin{figure}[htp]
 \centering
-\includegraphics[width = .618\textwidth]{Figure/leeds_freq_control.jpeg}
+\includegraphics[width = .8\textwidth]{Figure/leeds_freq_control.jpeg}
 \caption{Frequency and power control}
 \label{leeds_freq_control}
 \end{figure}
 
-Every country has its nominal frequency of the oscillations of alternating current in an electric power grid transmitted from a power station to the end-user. For instance, the nominal value is 50Hz in the UK while it’s 60Hz in USA.\\
-
-However, if a load is suddenly connected or disconnected to the system, or if the protection equipment suddenly disconnects a generating, there will be a distortion in the power balance between that delivered by the turbines and that consumed by the loads. This imbalance is initially covered from the kinetic energy of rotating rotors of turbines, generators and motors and, as a result, the frequency in the system will change. If there is a mismatch between the generation and the demand, for instance, due to the outage of one generating unit, then the frequency starts to drop down. If no control is applied, the frequency largely deviates and then reaches a meagre and steady-state value, due to which the electrical grid is shut down.\\
-
-The mechanism of primary frequency control is to restore the active power balance in a power system. After primary control takes place, the power balance is restored at a lower or higher frequency. Normally it takes seconds and responses from 5 to 30 seconds. It is a partly Automatic Generation Control.\\
+The mechanism of primary frequency control is to restore the active power balance in a power system. After primary control takes place, the power balance is restored at a lower or higher frequency. Normally it takes seconds and responses from 5 seconds to 30 seconds. It is a partly Automatic Generation Control.\\
 
 
 However, the frequency does not go back to its nominal value and remains at a steady-state value below or above the nominal one. To avoid damages to equipment and loads, we need secondary frequency control to restore the frequency balance to its nominal value or to eliminate the steady-state error/frequency error. Normally it takes minutes and responses from 30 seconds to 15 minutes. It is a fully Automatic Generation Control.\\
@@ -147,45 +155,47 @@ Tertiary Frequency Control encompasses actions taken to capture current and futu
 
 \chapter{PID Control Algorithm}
 \section{The physical theory behind Secondary Frequency Control}
-From Chapter 2, we mentioned that disturbances occur in the system, there will be a distortion in the power balance between that delivered by the turbines and that consumed by the loads. The imbalance is from the kinetic energy of rotating rotors of turbines, generators and motors and, thus, the frequency in the system will change. If no control is applied, the frequency largely deviates and then reaches a meagre and steady-state value, due to which the electrical grid is shut down. We also mentioned that the system will firstly starts Primary Frequency Control and the frequency will remains at a steady-state value below or above the nominal one. After that, Secondary Frequency Control starts.\\
+From Chapter 2, we mentioned that disturbances occur in the system, there will be a distortion in the power balance between that delivered by the turbines and that consumed by the loads. The imbalance is from the kinetic energy of rotating rotors of turbines, generators and motors and, thus, the frequency in the system will change. If no control is applied, the frequency largely deviates and then reaches a meagre and steady-state value, due to which the electrical grid is shut down. \\
+
+We also mentioned that the system will firstly starts Primary Frequency Control and the frequency will remains at a steady-state value below or above the nominal one. After that, Secondary Frequency Control starts.\\
 
 The mechanism of Secondary Frequency Control is to restore the frequency to the nominal one.\\
 
 Secondary frequency control, or load frequency control (LFC), or automatic generation control (AGC), is an automatic control that restores the frequency back to its nominal value in a centralised way. It's implemented that is activated after the primary frequency control. Typically, it takes 30 seconds to 15 minutes.\\
 
-\begin{figure}
+\begin{figure}[htb]
 \centering
-\includegraphics[width = .618\textwidth]{Figure/theory_sfc.png}
+\includegraphics[width = .5\textwidth]{Figure/theory_sfc.png}
 \caption{Equilibrium points for an increase in the power demand.}
 \label{theory_sfc}
 \end{figure}
 
-According to \ref{theory_sfc}, frequency value will rise as reference power rises. Assumed that point 1 is the situation after primary frequency control happens and point 5 has the nominal value of frequency. When trying to raise the reference power a little bit, point 1 will shift to point 2. Due to the power rise, the frequency of the system will rise, so point 2 will move to point 3. Changing more reference power of individual governors will move the overall generation characteristic of the system upwards. Eventually, this will lead to the restoration of the rated frequency (f0).\\
+According to Figure \ref{theory_sfc}, frequency value will rise as reference power rises. Assumed that point 1 is the situation after primary frequency control happens and point 5 has the nominal value of frequency. When trying to raise the reference power a little bit, point 1 will shift to point 2. Due to the power rise, the frequency of the system will rise, so point 2 will move to point 3. Changing more reference power of individual governors will move the overall generation characteristic of the system upwards. Eventually, this will lead to the restoration of the rated frequency (f0).\\
 
-\begin{figure}
+\begin{figure}[htb]
 \centering
 \includegraphics[width = .618\textwidth]{Figure/agc_blockDiagram.png}
 \caption{Functional diagram of a central regulator.}
 \label{agc_blockDiagram}
 \end{figure}
 
-As seen in \ref{agc_blockDiagram}, the frequency (f) will be measured in the local network and compared with the reference frequency to produce an amplified signal ( ∆P f ) that is proportional to the frequency deviation (∆f). For instance, if the frequency is smaller the reference frequency, then the signal ∆P f will be negative. Thus, input signal ACE is positive according to the functional diagram. Therefore, output signal ∆P ref is positive and it will adjust the system by raising the reference value of the power. Then the system will have a new frequency value ( f new ) that will go through the functional diagram again to compare the difference with the value of the reference frequency. ACE won’t be zero and the frequency won’t be stopped adding until we remove any error.\\
+As seen in Figure \ref{agc_blockDiagram}, the frequency (f) will be measured in the local network and compared with the reference frequency to produce an amplified signal ( ∆P f ) that is proportional to the frequency deviation (∆f). For instance, if the frequency is smaller the reference frequency, then the signal ∆P f will be negative. Thus, input signal ACE is positive according to the functional diagram. Therefore, output signal ∆P ref is positive and it will adjust the system by raising the reference value of the power. Then the system will have a new frequency value ( f new ) that will go through the functional diagram again to compare the difference with the value of the reference frequency. ACE won’t be zero and the frequency won’t be stopped adding until we remove any error.\\
 
 In this standard case, which ignores the existence of tie-line interchange error, the only condition to remove errors is the frequency deviation (∆f) equals to zero.\\
 
-\begin{figure}
+\begin{figure}[htb]
 \centering
 \includegraphics[width = .618\textwidth]{Figure/controller_powerBalance.png}
 \caption{Power balance of a control area.}
 \label{controller_powerBalance}
 \end{figure}
 
-However, it would be more difficult if consider the situation of tie-line interchange error. In interconnected power systems, AGC is implemented in a way where each subsystem has its own regulator. As shown in \ref{controller_powerBalance}, the power system is in equilibrium if the total power generation ( P T ), the total power demand ( P L ) and the net tie-line interchange power ( P tie ) satisfy the condition in each subsystem:\\
+However, it would be more difficult if consider the situation of tie-line interchange error. In interconnected power systems, AGC is implemented in a way where each subsystem has its own regulator. As shown in Figure \ref{controller_powerBalance}, the power system is in equilibrium if the total power generation ( P T ), the total power demand ( P L ) and the net tie-line interchange power ( P tie ) satisfy the condition in each subsystem:\\
 P T − (P L + P tie ) = 0.\\
 
 The objective of each regulator of the subsystem is to maintain frequency at the nominal level and to maintain net tie-line interchanges from the given area at the scheduled values. If there is a disturbance in one subsystem, then regulators in each subsystem should try to restore the frequency and net tie-line interchanges. Each subsystem regulator should enforce an increased generation covering its own area power imbalance and maintain planned net tie-line interchanges.\\
 
-As shown in Figure 3.2, to obtain a signal proportional to the tie-line interchange error ( ∆P tie ), [4] the information on power ﬂows in the tie-lines is sent via telecommunication lines to the central regulator which compares it with the reference value. Then the signal ( ∆P f ) is added to the net tie-line interchange error ( ∆P tie ) so that ACE is: \\
+As shown in Figure \ref{agc_blockDiagram}, to obtain a signal proportional to the tie-line interchange error ( ∆P tie ), the information on power ﬂows in the tie-lines is sent via telecommunication lines to the central regulator which compares it with the reference value. Then the signal ( ∆P f ) is added to the net tie-line interchange error ( ∆P tie ) so that ACE is: \\
 
 ACE =− ∆P f − ∆P tie .\\
 
