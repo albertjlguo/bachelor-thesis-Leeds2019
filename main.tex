@@ -12,7 +12,6 @@
 
 \usepackage{hyperref}
 \usepackage{graphicx}
-\usepackage{color,soul}
 
 \begin{document}
 \title{CENTRALISED CONTROL ALGORITHMS FOR SMART GRID OPERATION}
@@ -100,7 +99,7 @@ This project consists of two parts — PART I Algorithm and PART II Test Case Sc
 PART I focuses on the task of understanding and building Secondary Frequency Control (SFC) model and PI control algorithm so that we are able to test our cases in PART II.\\
 
 
-In Chapter \ref{chap:2}\hl{chap: 2}, we give an overview of Frequency Control, including Primary Frequency Control (PFC), Secondary Frequency Control (SFC) and Tertiary Frequency Control (TFC). We discuss the emergency control with PFC, SFC and TFC.\\
+In Chapter 2, we give an overview of Frequency Control, including Primary Frequency Control (PFC), Secondary Frequency Control (SFC) and Tertiary Frequency Control (TFC). We discuss the emergency control with PFC, SFC and TFC.\\
 
 In Chapter 3, we formally focus on the physical theory behind Secondary Frequency Control (SFC) which is the base of the whole project. We briefly discuss PID control and argue that we should use PI control to reduce the probability of risk. We then discuss how to build a communication layer on top of an existing smart grid simulator and design a centralised controller for stabilising the system. We describe the algorithm we built named sfc: its key parameters, tuning methodology, and some implementations. We finally define the acceptable results based on the official report from Nordic, and with that, we build our own analytical tools. With these tools, we can plot a 2D even a 3D diagram, find the eligible results and give feedback to our controller in PART II.\\
 
