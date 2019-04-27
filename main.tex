@@ -49,7 +49,7 @@ Lastly, I would like to thank other staffs and my fellow schoolmates in School o
 
 
 \chapter{Introduction}
-\section{Motivation}
+\section{Motivation} %1.1
 The motivation for doing this project contains a vision of restructuring and sustainability of energy in the future.
 \subsection{Problems in the Grid}
 \subsubsection{A. Energy Crisis}
@@ -93,7 +93,7 @@ Smart grids will power the modern city, and Secondary Frequency Control is one o
 Secondary Frequency Control ensures that the frequency of the electricity network is always restored to its nominal value when disturbances occur in the system. The frequency is one of the key “health” indicators of smart grids. Actively monitoring and controlling it will ensure system security. This is done by remotely controlling the power output of generating units (both conventional and renewables) through a communication network.\\
 
 
-\section{Thesis Outline}
+\section{Thesis Outline} %1.2
 This project consists of two parts — PART I Algorithm and PART II Test Case Scenario (Nordic).\\
 
 PART I focuses on the task of understanding and building Secondary Frequency Control (SFC) model and PI control algorithm so that we are able to test our cases in PART II.\\
@@ -115,22 +115,23 @@ In Chapter 7, we test Emergency Control and discuss the impact of different time
 
 We will finally conclude in Chapter 8.\\
 
-\section{Contributions}
+\section{Contributions} %1.3
 The contributions of this thesis are summarised as follows:\\
 \begin{itemize}
-  \item We built a communication layer on top of an existing Smart Grid simulator and design a centralised controller for stabilising the system.\\
+  \item I built a communication layer on top of an existing Smart Grid simulator and design a centralised controller for stabilising the system.\\
   
-  \item We researched situations that cause disturbances, including generators interruption, high time delays and blackout. We built a series of efficient models for analysing the performance of the system and remove any unacceptable results. After hundreds of manual data proofreading, these models has demonstrated superior analytical ability.\\
+  \item I researched situations that cause disturbances, including generators interruption, high time delays and blackout. We built a series of efficient models for analysing the performance of the system and remove any unacceptable results. After hundreds of manual data proofreading, these models has demonstrated superior analytical ability.\\
   
-  \item We built an optimal controller for stabilising the frequency based on the centralised controller and the analytical models above. This optimal controller has demonstrated superior performance of restoring frequency when disturbances occur in the system.\\
+  \item I built an optimal controller for stabilising the frequency based on the centralised controller and the analytical models above. This optimal controller has demonstrated superior performance of restoring frequency when disturbances occur in the system.\\
+  
+  \item I have learnt other important skills: test-driven development in Python, code modularity and collaborative version control.\\
 \end{itemize}
 
 
 \part{Algorithm}
 \chapter{An Overview of Frequency Control}
 \label{chap:2}
-\section{Overview}
-
+\section{Overview} %2.1
 Every country has its nominal frequency of the oscillations of alternating current in an electric power grid transmitted from a power station to the end-user. For instance, the nominal value is 50Hz in the UK while it’s 60Hz in USA.\\
 
 However, if a load is suddenly connected or disconnected to the system, or if the protection equipment suddenly disconnects a generating, there will be a distortion in the power balance between that delivered by the turbines and that consumed by the loads. This imbalance is initially covered from the kinetic energy of rotating rotors of turbines, generators and motors and, as a result, the frequency in the system will change. \\
@@ -157,7 +158,7 @@ Tertiary Frequency Control encompasses actions taken to capture current and futu
 
 
 \chapter{PID Control Algorithm}
-\section{The physical theory behind Secondary Frequency Control}
+\section{The physical theory behind Secondary Frequency Control} %3.1
 From Chapter 2, we mentioned that disturbances occur in the system, there will be a distortion in the power balance between that delivered by the turbines and that consumed by the loads. The imbalance is from the kinetic energy of rotating rotors of turbines, generators and motors and, thus, the frequency in the system will change. If no control is applied, the frequency largely deviates and then reaches a meagre and steady-state value, due to which the electrical grid is shut down. \\
 
 We also mentioned that the system will firstly starts Primary Frequency Control and the frequency will remains at a steady-state value below or above the nominal one. After that, Secondary Frequency Control starts.\\
