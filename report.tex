@@ -16,6 +16,8 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{xeCJK}
+\usepackage{pdfpages,caption}
+\usepackage[final]{pdfpages}
 
 \begin{document}
 \title{CENTRALISED CONTROL ALGORITHMS FOR SMART GRID OPERATION}
@@ -64,10 +66,10 @@ Nowadays, non-renewable resource still consists of a large proportion in the ene
 \subsubsection{B. Climate Change}
 According to the paper from Nature, climate change happened in the past 70 years. It has already had effects on the environment around us. Glaciers are shrinking and ices are breaking up earlier on lakes and rivers. Most climate scientists agree with that it is the human expansion that causes the global warming. As we know, carbon dioxide (CO2) is a significant component of the atmosphere.Atmospheric CO2 concentration has been increased by more than a third since the Industrial Revolution began. More importantly, atmospheric carbon dioxide has exceeded the highest level in the past 400,000 years.\\
 
-\begin{figure}
+\begin{figure}[htbp]
 \centering
-\includegraphics[width = .999\textwidth]{figure/1_1_1_nasa_co2.jpeg}
-\caption{This graph provides evidence that atmospheric CO2 has increased since the Industrial Revolution began. Image courtesy: https://climate.nasa.gov/evidence/}
+\includegraphics[width = \textwidth]{figure/1_1_1_nasa_co2.jpeg}
+\caption{The evidence that atmospheric CO2 has increased since the Industrial Revolution began. Image courtesy: https://climate.nasa.gov/evidence/}
 \label{1_1_1_nasa_co2}
 \end{figure}
 
@@ -144,9 +146,9 @@ If there is a mismatch between the generation and the demand, for instance, due 
 
 If no control is applied, the frequency largely deviates and then reaches a meagre and steady-state value, due to which the electrical grid is shut down.\\
 
-\begin{figure}[htp]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width = .8\textwidth]{figure/2_1_freq.jpeg}
+\includegraphics[width = \textwidth]{figure/2_1_freq.jpeg}
 \caption{Frequency and power control}
 \label{2_1_freq}
 \end{figure}
@@ -172,18 +174,18 @@ The mechanism of Secondary Frequency Control is to restore the frequency to the 
 
 Secondary frequency control, or load frequency control (LFC), or automatic generation control (AGC), is an automatic control that restores the frequency back to its nominal value in a centralised way. It's implemented that is activated after the primary frequency control. Typically, it takes 30 seconds to 15 minutes.\\
 
-\begin{figure}[htb]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width = .5\textwidth]{figure/3_1_Equilibrium.png}
+\includegraphics[width = \textwidth]{figure/3_1_Equilibrium.pdf}
 \caption{Equilibrium points for an increase in the power demand.}
 \label{3_1_Equilibrium}
-\end{figure}
+\end{figure*}
 
 According to Figure \textcolor{red}{\ref{3_1_Equilibrium}}, frequency value will rise as reference power rises. Assumed that point 1 is the situation after primary frequency control happens and point 5 has the nominal value of frequency. When trying to raise the reference power a little bit, point 1 will shift to point 2. Due to the power rise, the frequency of the system will rise, so point 2 will move to point 3. Changing more reference power of individual governors will move the overall generation characteristic of the system upwards. Eventually, this will lead to the restoration of the rated frequency ($f0$).\\
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = .618\textwidth]{figure/3_1_Functional.png}
+\includegraphics[width = \textwidth]{figure/3_1_Functional.png}
 \caption{Functional diagram of a central regulator.}
 \label{3_1_Functional}
 \end{figure}
@@ -192,14 +194,14 @@ As seen in Figure \textcolor{red}{\ref{3_1_Functional}}, the frequency ($f$) wil
 
 In this standard case, which ignores the existence of tie-line interchange error, the only condition to remove errors is the frequency deviation ($\Delta f$) equals to zero.\\
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width =.618\textwidth]{figure/3_1_Power.png}
+\includegraphics[width =\textwidth]{figure/3_1_Power.png}
 \caption{Power balance of a control area.}
 \label{3_1_Power}
 \end{figure}
 
-However, it would be more difficult if consider the situation of tie-line interchange error. In interconnected power systems, AGC is implemented in a way where each subsystem has its own regulator. As shown in Figure \ref{3_1_Power}, the power system is in equilibrium if the total power generation ($P_T$), the total power demand ($P_L$ ) and the net tie-line interchange power ( $P_t_i_e$ ) satisfy the condition in each subsystem:\\
+However, it would be more difficult if consider the situation of tie-line interchange error. In interconnected power systems, AGC is implemented in a way where each subsystem has its own regulator. As shown in Figure \textcolor{red}{\ref{3_1_Power}}, the power system is in equilibrium if the total power generation ($P_T$), the total power demand ($P_L$ ) and the net tie-line interchange power ( $P_t_i_e$ ) satisfy the condition in each subsystem:\\
 
 \begin{equation} \label{eq1}
  P_T - (P_L + P_t_i_e) = 0
@@ -207,7 +209,7 @@ However, it would be more difficult if consider the situation of tie-line interc
 
 The objective of each regulator of the subsystem is to maintain frequency at the nominal level and to maintain net tie-line interchanges from the given area at the scheduled values. If there is a disturbance in one subsystem, then regulators in each subsystem should try to restore the frequency and net tie-line interchanges. Each subsystem regulator should enforce an increased generation covering its own area power imbalance and maintain planned net tie-line interchanges.\\
 
-As shown in Figure \ref{3_1_Functional}, to obtain a signal proportional to the tie-line interchange error ($\Delta P_t_i_e$), the information on power ﬂows in the tie-lines is sent via telecommunication lines to the central regulator which compares it with the reference value. Then the signal ($\Delta P_f$) is added to the net tie-line interchange error ($\Delta P_t_i_e$) so that ACE is: \\
+As shown in Figure \textcolor{red}{\ref{3_1_Functional}}, to obtain a signal proportional to the tie-line interchange error ($\Delta P_t_i_e$), the information on power ﬂows in the tie-lines is sent via telecommunication lines to the central regulator which compares it with the reference value. Then the signal ($\Delta P_f$) is added to the net tie-line interchange error ($\Delta P_t_i_e$) so that ACE is: \\
 \begin{equation} \label{eq2}
  ACE = −\Delta P_f − \Delta P_t_i_e 
 \end{equation}
@@ -231,9 +233,9 @@ However, there are two situations that we cannot ignore. Firstly, steady-state e
 
 The second situation is that, in reality, the signal is not perfect and it has its own errors. In the first example above, we choose 0.5 as our amplification factor ($k_p$) and thus the first new signal will be 95. However, it is a possible and common situation that the new signal will be lost its signal value by 5 every time every time after the control. Finally, the signal will remain 90 and the error will be 10 forever. \\
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width = .9\textwidth]{figure/3_2_steady.png}
+\includegraphics[width = \textwidth]{figure/3_2_steady.png}
 \caption{Steady-state error and high frequency component in a signal.}
 \label{3_2_steady}
 \end{figure}
@@ -250,9 +252,9 @@ At this point, we are equipped with all the building blocks. Let’s first recap
 
 To the integral of the error,  it is should be realised that using discrete mathematics is helpful. In discrete mathematics, the value of integral of the error is the accumulated error. Thus, in programming, we can use time-step to help calculating the integral of the error.  Detailedly, in program, we can represent output as\\
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width = .999\textwidth]{figure/3_3_code1.png}
+\includegraphics[width = \textwidth]{figure/3_3_code1.png}
 %\caption{ }
 \label{3_3_code1}
 \end{figure}
@@ -261,9 +263,9 @@ where nominal frequency is 1.0 and we can directly get actual frequency from the
 
 Next, we should send output signal to generators through the command,\\
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width = .999\textwidth]{figure/3_3_code2.png}
+\includegraphics[width = \textwidth]{figure/3_3_code2.png}
 %\caption{ }
 \label{3_3_code2}
 \end{figure}
@@ -272,9 +274,9 @@ where, 'gensName' is the name of generator such as g1, g2 or g9. '1/gensWeight' 
 
 Furthermore, we need to consider dead band. For instance, it is considered as approaching the set point if the error is 0.000009. Thus,\\
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width = .999\textwidth]{figure/3_3_code3.png}
+\includegraphics[width = \textwidth]{figure/3_3_code3.png}
 %\caption{ }
 \label{3_3_code3}
 \end{figure}
@@ -288,20 +290,21 @@ Multiple hardcoded parameters, like the disconnected generator, the generators w
 \subsection{Tuning Model} %3.4.1
 Imagine if we have a 2d plane with the horizontal axis kp and the vertical axis ki, we can use the points on the plane to represent all the acceptable combination of kp and ki.\\
 
-\begin{figure}[!htb]
-\minipage{0.32\textwidth}
-  \includegraphics[width=\linewidth]{figure/3_4_1_tune_ki_1.png}
+\begin{figure}[!htbp]
+\minipage{0.33\textwidth}
+  \includegraphics[width= \linewidth]{figure/3_4_1_tune_ki_1.png}
   %\caption{A really Awesome Image}\label{fig:awesome_image1}
 \endminipage\hfill
-\minipage{0.32\textwidth}
-  \includegraphics[width=\linewidth]{figure/3_4_1_tune_ki_2.jpeg}
+\minipage{0.33\textwidth}
+  \includegraphics[width= \linewidth]{figure/3_4_1_tune_ki_2.jpeg}
   %\caption{A really Awesome Image}\label{fig:awesome_image2}
 \endminipage\hfill
-\minipage{0.32\textwidth}%
-  \includegraphics[width=\linewidth]{figure/3_4_1_tune_ki_3.jpeg}
+\minipage{0.33\textwidth}%
+  \includegraphics[width= \linewidth]{figure/3_4_1_tune_ki_3.jpeg}
   %\caption{A really Awesome Image}\label{fig:awesome_image3}
 \endminipage
 \caption{PI Control: ki = 0.2; ki = 0.5; ki = 1.3}
+\label{3_4_1_larger_ki}
 \end{figure}
 
 
@@ -330,18 +333,18 @@ The first analytical model will generate two different kinds of excel files. One
 
 Importantly, we define 'SettlingTimeThreshold' , a MATLAB variant, to 0.02, so time it takes for the error between the response and the steady-state response to fall to within 2\% of nominal value.\\
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width = .999\textwidth]{figure/3_4_2_code4.png}
+\includegraphics[width = \textwidth]{figure/3_4_2_code4.png}
 %\caption{ }
 \label{3_4_2_code4}
 \end{figure}
 
 In the first analytical model , we check if simulation results are acceptable via our MATLAB program if we have collected data. Firstly, we import data from simulations. Then, we will limit both the overshoot and settling time as required via a MATLAB module: stepinfo. The data will be filtered if overshoot or the settling time is not in the range we set.\\
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width = .999\textwidth]{figure/3_4_2_code5.png}
+\includegraphics[width = \textwidth]{figure/3_4_2_code5.png}
 %\caption{ }
 \label{3_4_2_code5}
 \end{figure}
@@ -353,9 +356,9 @@ The second analytical model helps finding which combination of kp and ki will ha
 
 The third analytical model helps finding the best combination of kp and ki. Firstly, we import data from ori.csv that can be transferred directly by ori.xlsx file. Then, we will calculate the average settling time for each combination of kp and ki. However, it is invalid that a combination is not acceptable for all the time delay. Thus, we need to add a limitation factor to make sure the best combination is valid. For instance, if there are 21 different time delay, we can use:\\
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width = .999\textwidth]{figure/3_4_2_code6.png}
+\includegraphics[width = \textwidth]{figure/3_4_2_code6.png}
 %\caption{ }
 \label{3_4_2_code6}
 \end{figure}
@@ -366,7 +369,7 @@ The fourth analytical model helps sorting out the combination’s selling time w
 
 The fifth analytical model helps plotting a 3D triangle surface plot. In all, it draws a 3d plot from the data in ori.xlsx. After defining x axis, y axis and z axis, we use:\\
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_4_2_code7.png}
 %\caption{ }
@@ -382,11 +385,11 @@ to draw a triangle surface plot. Besides, it highlights the results from the sec
 \section{Hypothesis} %4.1
 \subsection{Hardware Hypothesis} %4.1.1
 
-In this Chapter, we use the algorithms described in the Chapter 3 to test the well-known Nordic system. One-line diagram of the Nordic test system is  shown in Figure\ref{4_1_1_nordic}.\\
+In this Chapter, we use the algorithms described in the Chapter 3 to test the well-known Nordic system. One-line diagram of the Nordic test system is  shown in Figure \textcolor{red}{\ref{4_1_1_nordic}}.\\
 
-\begin{figure}[htb]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width = .8\textwidth]{figure/4_1_1_nordic.png}
+\includegraphics[width = \textwidth]{figure/4_1_1_nordic.png}
 \caption{One-line diagram of the test system}
 \label{4_1_1_nordic}
 \end{figure}
@@ -394,7 +397,8 @@ In this Chapter, we use the algorithms described in the Chapter 3 to test the we
 Firstly, we assumed g2 as our monitor. The monitor will send its frequency, also the frequency in the system, to our communication layer. Then, we choose five thermal generators  (g6, g7, g14, g15, g16) in the CENTRAL area. There are three reasons I choose these five generators that produce the power to the system when disturbances occur in the system. First of all, these are thermal generators not the generators in the NORTH area which are equipped with hydraulic turbines. We only have strict mathematical proof of thermal generators. Another reason is they have nice nominal power as shown the Table \textcolor{red}{\ref{nominalPower}} below. The second reason is the difference of them is up to 900 MW which is good for researching the function of generators comprehensively. The last reason is I was collaborated with a PhD student. We researched Nordic test system in a different algorithm. He used distributed algorithm and I used centralised algorithm. For convenience, we keep our generators same.\\
 
 
-\begin{table}[htb]
+\begin{table}[htbp]
+\centering
 \begin{tabular}{ll}
 Generator & Nominal Power (MW) \\
 g1        & 760.0              \\
@@ -416,12 +420,193 @@ g16       & 630.0 (7/32)       \\
 g17       & 540.0              \\
 g18       & 1080.0             \\
 g19       & 475.0              \\
-g20       & 4275.0            
-\label{nominalPower}
+g20       & 4275.0             
+
 \end{tabular}
+\label{nominalPower}
+\caption{\label{tab:table-name}Generators Nominal Power in Nordic}
 \end{table}
 
 After choosing the generators, we need to choose a breaker. The breaker is a generator that will be disconnected to the system. Thus, a breaker is one of the most important impact factors to the grid system. However, I don’t know how to choose a suitable breaker at the beginning and then I try to disconnect them one boy one without Secondary Frequency Control. Results are as follows.\\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_1_1_without1.jpeg}
+\caption{One-line diagram of the test system}
+\label{4_1_1_without1}
+\end{figure}
+
+As we can see, g8, g17, g18 and g20 are extremely unstable before 100 seconds and g13 have zero nominal power. Thus, we will choose breaker out of them to make sure we have a smooth testing environment.\\
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_1_1_without2.jpeg}
+\caption{One-line diagram of the test system}
+\label{4_1_1_without2}
+\end{figure}
+
+Finally, we choose g9 because it has a larger steady-state error. Thus, the turbines will send more power to the system. It is easier to see the change of kp and ki.\\\\\\\\
+
+\subsection{Software Hypothesis} %4.1.2
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_1_1_without3.jpeg}
+\caption{One-line diagram of the test system}
+\label{4_1_1_without3}
+\end{figure}
+Next hypothesis is start time and end time. In the definition of Primary Frequency Control, its power balance will be restored at a lower or higher frequency, thus, from the Figure \textcolor{red}{\ref{4_1_1_without3}}, we can observe that, at t equals to 150 seconds, the power is in balance. Thus, I choose the 150th second at the beginning of Secondary Frequency Control. In the definition of Secondary Frequency Control, the response time of it will takes up to 15 minutes, thus, I choose the 900th second as my temporary end time.\\
+
+Since it is a low time delay testing, we can assume that delay is 0.01 seconds. The reason for no choosing zero delay is that, in reality, there will be no such a zero delay scenario.\\
+
+Next step, we need to start tuning kp and ki. Following the idea of section 3.4, firstly, we firstly assume a large value as the limit value of kp. Detailedly, we assume the range of kp and ki are both from 0.1 to 300.1 and their step are both 50. \\
+
+Then, we use the designed MATLAB program to check whether the simulation results are acceptable. Detailedly, we set overshoot be smaller than 0.2 percent because it is required that the frequency error should be in range of ±0.1 Hz from the section 4.1.1 in the Nordic official document.\\
+
+We also need to make sure the signal is really settled from 0.9998 to 1.0002 before the end time (i.e. the 900th second), thus, it is necessary to set the required setting time smaller than the end time. We set required settling time be 800 seconds. \\
+
+Every signal will check if they are meet the settling criteria, i.e. the signal must be in a range of 0.9998 and 1.0002 at least from the 800th second.\\
+
+Finally, the program will sketch the plots of all acceptable results and will give related information in the legends. \\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_1_1_a.jpeg}
+\caption{One-line diagram of the test system}
+\label{4_1_1_a}
+\end{figure}
+
+However, as you can see from Figure \textcolor{red}{\ref{4_1_1_a}}, only two of all the simulations are acceptable. The maximum value of kp is 100.1 and the maximum value of ki is 0.1. \\
+
+According to the regulations from the last Chapter, we need to increase the maximum amplifier factor by the step value. \\
+
+For instance, the new range of kp is between 0.1 and 150.1 and the new range of ki is between 0.1 and 50.1. To make a more accurate result, we need to decrease the step at the same time. We set step to 10.0. \\
+
+Finally, we will have another plot as shown in Figure \textcolor{red}{\ref{4_1_1_b}}. \\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_1_1_b.jpeg}
+\caption{One-line diagram of the test system}
+\label{4_1_1_b}
+\end{figure}
+
+
+Apparently, we have more acceptable results than last simulation because of shrinking the step of kp. We can find that the simulations are unacceptable if kp equals to 140.1 or 150.1. Thus, we can finally fix the range of kp between 0.1 and 140.1 and keep the step of kp to 10. \\
+
+We could set ki in a range of 0.1 and 10.1 with the reason above. However, it is possible the maximum value of ki is still 0.1 if we set the range of ki be from 0.1 and 10.1. Then the simulations are meaningless. \\
+
+Thus, we need to apply bisection method on the rang of ki and find the meaningful maximum ki. Detailedly, we range kp from 0.1 to 140.1 and its step is 10.0. We set ki equals to 5.1. The purpose of doing this is to find if there are acceptable results if ki is in the middle of 0.1 and 10.1.\\   
+
+The filtered results are as Figure \textcolor{red}{\ref{4_1_1_c}}. \\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_1_1_c.jpeg}
+\caption{One-line diagram of the test system}
+\label{4_1_1_c}
+\end{figure}
+
+The results shows there are acceptable simulations if ki equals to 5.1. \\
+
+Thus, we can set the range of ki between 0.1 and 10.1. 
+Besides, we can reset the end time to 240 seconds and the required settling time to 200 seconds since most of the acceptable settling time are smaller than 200 seconds.\\
+
+\section{Expected Outcome} %4.2
+From discussions before, we know that both kp and ki can not be expanded indefinitely since we have specialised limit for kp and ki in MATLAB program. Thus, firstly, I hope to see a clearly borderline to separate the acceptable results and unacceptable results. The acceptable results will be expressed as blue points in Excel. \\
+
+Secondly, I hope to see a relationship between the best point, which has minimum settling time among all the acceptable results, and other acceptable points. I expect the best point will not in the borderline because the points are unstable in the borderline. \\
+
+I also do not hope the best point has a large or small kp and ki. A larger kp will produce a larger overshoot although it will be relative faster. A small kp has a larger probability of producing a steady-state error and it will be relative harder to approach a settled statement. A larger ki produces more oscillations, like Figure \textcolor{red}{\ref{3_4_1_larger_ki}} shown. It is also not easy to approach a settled statement. A small ki will not help fixing the steady-state error along with a small kp. \\
+
+
+\section{Implement} %4.3
+One of the most important idea to implement the testing is modularizing the function. We modularize our functions, like the AGC algorithm, the moving file script and ending file script, in a python file so we can import them as a library and call them in the main file directly. Additionally, it is necessary to remove hard coded parameters so it is easy to change the parameters like start time, end time, prepared folder address and list of generators in the main function.\\
+
+Another noteworthy detail is we need to keep two significant digits for kp, ki and time delay. It provides a unified format that will help exporting data into analytical algorithms.\\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_3_code1.png}
+%\caption{ }
+\label{4_3_code1}
+\end{figure}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_3_code2.png}
+%\caption{ }
+\label{4_3_code2}
+\end{figure}
+
+
+\section{Results} %4.4
+\subsection{Results and Analysis}
+The implement results are as follows. Figure \textcolor{red}{\ref{4_4_1_result1}} shows all the acceptable signals.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_4_1_result1.jpeg}
+\caption{}
+\label{4_4_1_result1}
+\end{figure}
+
+From Figure \textcolor{red}{\ref{4_4_1_result1}}, we can roughly draw a conclusion that the signals are indeed within a reasonable range and it seems that they have finally reached the nominal value. \\
+
+However, we need to check further by choosing one of the signals. For instance, I choose the signal when its kp is 90.1 and its ki is 7.1. The reason I choose this signal is that it is located on the borderline. Results are as follows. \\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_4_1_result2.jpeg}
+\caption{}
+\label{4_4_1_result2}
+\end{figure}
+
+From the Figure \textcolor{red}{\ref{4_4_1_result2}} above, we can see that the overshoot does not exceed 1.002 obviously. But for the settling time, we can not make any conclusion until we see the details. \\
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_4_1_result3.jpeg}
+\caption{}
+\label{4_4_1_result3}
+\end{figure}
+
+From Figure \textcolor{red}{\ref{4_4_1_result3}}, we can judge its overshoot does do not exceed the maximum allowable value, i.e. 1.002 $p\mu$.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_4_1_result4.jpeg}
+\caption{}
+\label{4_4_1_result4}
+\end{figure}
+
+
+From Figure \textcolor{red}{\ref{4_4_1_result4}}, we find that, after the settling time MATLAB calculated, the signal is between the settling time threshold, i.e. between 0.9998 $p\mu$ and 1.002 $p\mu$. \\
+
+With the prove above, we can finally judge that our assumed acceptable simulation results are acceptable. \\
+
+Next, we will show you the relationship between kp and ki. \\
+
+
+\includepdf[pages=-]{figure/4_4_ori.pdf}
+\label{4_4_ori}
+
+
+
+
+ Table \textcolor{red}{\ref{4_4_ori}} shows the parameters that make up the acceptable signals, i.e. kp, ki, delay and settling time. It has ranked by the settling time. 
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_4_1_result4.jpeg}
+\caption{}
+\label{4_4_1_result4}
+\end{figure}
+
+
 
 
 
