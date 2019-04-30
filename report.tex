@@ -1,6 +1,3 @@
-% University of Leeds PhD thesis style -- modifications to the report style
-% This is unofficial so you should always double check against the
-% Registrar's office rules
 % See http://library.stanford.edu/research/bibliography-management/latex-and-bibtex
 % 
 % Example of use below
@@ -13,11 +10,14 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{color,soul}
-\usepackage{listings}
-\usepackage{xcolor}
-\usepackage{xeCJK}
-\usepackage{pdfpages,caption}
-\usepackage[final]{pdfpages}
+
+%\usepackage{listings}
+%\usepackage{xcolor}
+%\usepackage{xeCJK}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{pdfpages,caption}
+
+
 
 \begin{document}
 \title{CENTRALISED CONTROL ALGORITHMS FOR SMART GRID OPERATION}
@@ -59,7 +59,7 @@ Lastly, I would like to thank other staffs and my fellow schoolmates in School o
 The motivation for doing this project contains a vision of restructuring and sustainability of energy in the future.
 \subsection{Problems in the Grid}
 \subsubsection{A. Energy Crisis}
-The energy crisis is one of the most essential and critical crises in the 21st century.
+The energy crisis is one of the most essential and critical crises in the 21st century.\\
 
 Nowadays, non-renewable resource still consists of a large proportion in the energy system. Non-renewable resource, or finite resource, is depleting. Although we might not meet the complete depletion of non-renewable resources in the future 50 years, based on Hotelling’s "Economics of Exhaustible Resources", David Ricardo proposed that as the historical production stock accumulates, higher grade ores get depleted and the producer resorts to lower grade ores, sustaining greater extraction costs. It means, the extraction costs will rise, and the price of the products based on ores will rise. Thus, we can assume that the price of most of the non-renewable resources, like oil, coal and gas, will rise since these have similar properties with ores.\\
 
@@ -68,8 +68,8 @@ According to the paper from Nature, climate change happened in the past 70 years
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/1_1_1_nasa_co2.jpeg}
-\caption{The evidence that atmospheric CO2 has increased since the Industrial Revolution began. Image courtesy: https://climate.nasa.gov/evidence/}
+\includegraphics[width = .891\textwidth]{figure/1_1_1_nasa_co2.jpeg}
+\caption{The evidence that atmospheric CO2 has increased since the Industrial Revolution began. Image courtesy: https://climate.nasa.gov/evidence}
 \label{1_1_1_nasa_co2}
 \end{figure}
 
@@ -148,7 +148,7 @@ If no control is applied, the frequency largely deviates and then reaches a meag
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/2_1_freq.jpeg}
+\includegraphics[width = .819\textwidth]{figure/2_1_freq.jpeg}
 \caption{Frequency and power control}
 \label{2_1_freq}
 \end{figure}
@@ -176,7 +176,7 @@ Secondary frequency control, or load frequency control (LFC), or automatic gener
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/3_1_Equilibrium.pdf}
+\includegraphics[width = 0.816\textwidth]{figure/3_1_Equilibrium.pdf}
 \caption{Equilibrium points for an increase in the power demand.}
 \label{3_1_Equilibrium}
 \end{figure*}
@@ -185,7 +185,7 @@ According to Figure \textcolor{red}{\ref{3_1_Equilibrium}}, frequency value will
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = \textwidth]{figure/3_1_Functional.png}
+\includegraphics[width = 0.891\textwidth]{figure/3_1_Functional.png}
 \caption{Functional diagram of a central regulator.}
 \label{3_1_Functional}
 \end{figure}
@@ -196,12 +196,12 @@ In this standard case, which ignores the existence of tie-line interchange error
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width =\textwidth]{figure/3_1_Power.png}
+\includegraphics[width =0.819\textwidth]{figure/3_1_Power.png}
 \caption{Power balance of a control area.}
 \label{3_1_Power}
 \end{figure}
 
-However, it would be more difficult if consider the situation of tie-line interchange error. In interconnected power systems, AGC is implemented in a way where each subsystem has its own regulator. As shown in Figure \textcolor{red}{\ref{3_1_Power}}, the power system is in equilibrium if the total power generation ($P_T$), the total power demand ($P_L$ ) and the net tie-line interchange power ( $P_t_i_e$ ) satisfy the condition in each subsystem:\\
+However, it would be more difficult if consider the situation of tie-line interchange error. In interconnected power systems, AGC is implemented in a way where each subsystem has its own regulator. As shown in Figure \textcolor{red}{\ref{3_1_Power}}, the power system is in equilibrium if the total power generation ($P_T$), the total power demand ($P_L$) and the net tie-line interchange power ($P_t_i_e$) satisfy the condition in each subsystem:\\
 
 \begin{equation} \label{eq1}
  P_T - (P_L + P_t_i_e) = 0
@@ -209,7 +209,7 @@ However, it would be more difficult if consider the situation of tie-line interc
 
 The objective of each regulator of the subsystem is to maintain frequency at the nominal level and to maintain net tie-line interchanges from the given area at the scheduled values. If there is a disturbance in one subsystem, then regulators in each subsystem should try to restore the frequency and net tie-line interchanges. Each subsystem regulator should enforce an increased generation covering its own area power imbalance and maintain planned net tie-line interchanges.\\
 
-As shown in Figure \textcolor{red}{\ref{3_1_Functional}}, to obtain a signal proportional to the tie-line interchange error ($\Delta P_t_i_e$), the information on power ﬂows in the tie-lines is sent via telecommunication lines to the central regulator which compares it with the reference value. Then the signal ($\Delta P_f$) is added to the net tie-line interchange error ($\Delta P_t_i_e$) so that ACE is: \\
+As shown in Figure \textcolor{red}{\ref{3_1_Functional}}, to obtain a signal proportional to the tie-line interchange error ($\Delta P_t_i_e$), the information on power ﬂows in the tie-lines is sent via telecommunication lines to the central regulator which compares it with the reference value. Then the signal ($\Delta P_f$) is added to the net tie-line interchange error ($\Delta P_t_i_e$) so that ACE is: 
 \begin{equation} \label{eq2}
  ACE = −\Delta P_f − \Delta P_t_i_e 
 \end{equation}
@@ -235,7 +235,7 @@ The second situation is that, in reality, the signal is not perfect and it has i
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/3_2_steady.png}
+\includegraphics[width = .891\textwidth]{figure/3_2_steady.png}
 \caption{Steady-state error and high frequency component in a signal.}
 \label{3_2_steady}
 \end{figure}
@@ -254,7 +254,7 @@ To the integral of the error,  it is should be realised that using discrete math
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/3_3_code1.png}
+\includegraphics[width = .999\textwidth]{figure/3_3_code1.png}
 %\caption{ }
 \label{3_3_code1}
 \end{figure}
@@ -265,7 +265,7 @@ Next, we should send output signal to generators through the command,\\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/3_3_code2.png}
+\includegraphics[width = .999\textwidth]{figure/3_3_code2.png}
 %\caption{ }
 \label{3_3_code2}
 \end{figure}
@@ -276,7 +276,7 @@ Furthermore, we need to consider dead band. For instance, it is considered as ap
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/3_3_code3.png}
+\includegraphics[width = .999\textwidth]{figure/3_3_code3.png}
 %\caption{ }
 \label{3_3_code3}
 \end{figure}
@@ -335,7 +335,7 @@ Importantly, we define 'SettlingTimeThreshold' , a MATLAB variant, to 0.02, so t
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/3_4_2_code4.png}
+\includegraphics[width = .999\textwidth]{figure/3_4_2_code4.png}
 %\caption{ }
 \label{3_4_2_code4}
 \end{figure}
@@ -344,7 +344,7 @@ In the first analytical model , we check if simulation results are acceptable vi
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/3_4_2_code5.png}
+\includegraphics[width = .999\textwidth]{figure/3_4_2_code5.png}
 %\caption{ }
 \label{3_4_2_code5}
 \end{figure}
@@ -358,7 +358,7 @@ The third analytical model helps finding the best combination of kp and ki. Firs
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/3_4_2_code6.png}
+\includegraphics[width = .999\textwidth]{figure/3_4_2_code6.png}
 %\caption{ }
 \label{3_4_2_code6}
 \end{figure}
@@ -389,7 +389,7 @@ In this Chapter, we use the algorithms described in the Chapter 3 to test the we
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_1_1_nordic.png}
+\includegraphics[width = .891\textwidth]{figure/4_1_1_nordic.png}
 \caption{One-line diagram of the test system}
 \label{4_1_1_nordic}
 \end{figure}
@@ -431,7 +431,7 @@ After choosing the generators, we need to choose a breaker. The breaker is a gen
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_1_1_without1.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_1_1_without1.jpeg}
 \caption{One-line diagram of the test system}
 \label{4_1_1_without1}
 \end{figure}
@@ -441,18 +441,18 @@ As we can see, g8, g17, g18 and g20 are extremely unstable before 100 seconds an
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_1_1_without2.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_1_1_without2.jpeg}
 \caption{One-line diagram of the test system}
 \label{4_1_1_without2}
 \end{figure}
 
-Finally, we choose g9 because it has a larger steady-state error. Thus, the turbines will send more power to the system. It is easier to see the change of kp and ki.\\\\\\\\
+Finally, we choose g9 because it has a larger steady-state error. Thus, the turbines will send more power to the system. It is easier to see the change of kp and ki.\\
 
 \subsection{Software Hypothesis} %4.1.2
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_1_1_without3.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_1_1_without3.jpeg}
 \caption{One-line diagram of the test system}
 \label{4_1_1_without3}
 \end{figure}
@@ -472,7 +472,7 @@ Finally, the program will sketch the plots of all acceptable results and will gi
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_1_1_a.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_1_1_a.jpeg}
 \caption{One-line diagram of the test system}
 \label{4_1_1_a}
 \end{figure}
@@ -487,7 +487,7 @@ Finally, we will have another plot as shown in Figure \textcolor{red}{\ref{4_1_1
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_1_1_b.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_1_1_b.jpeg}
 \caption{One-line diagram of the test system}
 \label{4_1_1_b}
 \end{figure}
@@ -503,7 +503,7 @@ The filtered results are as Figure \textcolor{red}{\ref{4_1_1_c}}. \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_1_1_c.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_1_1_c.jpeg}
 \caption{One-line diagram of the test system}
 \label{4_1_1_c}
 \end{figure}
@@ -547,7 +547,7 @@ The implement results are as follows. Figure \textcolor{red}{\ref{4_4_1_result1}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_4_1_result1.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_4_1_result1.jpeg}
 \caption{}
 \label{4_4_1_result1}
 \end{figure}
@@ -558,7 +558,7 @@ However, we need to check further by choosing one of the signals. For instance, 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_4_1_result2.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_4_1_result2.jpeg}
 \caption{}
 \label{4_4_1_result2}
 \end{figure}
@@ -568,7 +568,7 @@ From the Figure \textcolor{red}{\ref{4_4_1_result2}} above, we can see that the 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_4_1_result3.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_4_1_result3.jpeg}
 \caption{}
 \label{4_4_1_result3}
 \end{figure}
@@ -577,7 +577,7 @@ From Figure \textcolor{red}{\ref{4_4_1_result3}}, we can judge its overshoot doe
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_4_1_result4.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_4_1_result4.jpeg}
 \caption{}
 \label{4_4_1_result4}
 \end{figure}
@@ -589,10 +589,12 @@ With the prove above, we can finally judge that our assumed acceptable simulatio
 
 Next, we will show you the relationship between kp and ki. \\
 
-
-\includepdf[pages=-]{figure/4_4_ori.pdf}
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width = \textwidth]{figure/4_4_ori.pdf}
+\caption{cfqwx}
 \label{4_4_ori}
-
+\end{figure*}
 
 
 
@@ -601,7 +603,7 @@ Next, we will show you the relationship between kp and ki. \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_4_1_result4.jpeg}
+\includegraphics[width = .891\textwidth]{figure/4_4_1_result4.jpeg}
 \caption{}
 \label{4_4_1_result4}
 \end{figure}
@@ -634,9 +636,9 @@ Next, we will show you the relationship between kp and ki. \\
 
 
 \appendix
-\chapter{}
+\chapter{Reference}
 ...
-%\bibliographystyle{plain}
-%\bibliography{mybib}
+\bibliographystyle{plain}
+\bibliography{mybib}
 
 \end{document}
