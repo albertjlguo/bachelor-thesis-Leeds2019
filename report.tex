@@ -11,11 +11,11 @@
 \usepackage{graphicx}
 \usepackage{color,soul}
 
+
 %\usepackage{listings}
 %\usepackage{xcolor}
 %\usepackage{xeCJK}
 %\usepackage[pdftex]{graphicx}
-%\usepackage{pdfpages,caption}
 
 
 
@@ -272,14 +272,50 @@ Next, we should send output signal to generators through the command,\\
 
 where, 'gensName' is the name of generator such as g1, g2 or g9. '1/gensWeight' is $\alpha$ in the Figure \textcolor{red}{\ref{3_1_Functional}}. We use $\alpha$ to ask power proportional to these generators' nominal power. \\
 
-Furthermore, we need to consider dead band. For instance, it is considered as approaching the set point if the error is 0.000009. Thus,\\
+Furthermore, we need to consider deadband control. The deadband refers to the the range of input signal when output signal is zero in the domain of transfer signal. In our case, as shown in Figure \textcolor{red}{\ref{3_3_deadband}}, it refers to the range of time when frequency does not change. \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = .999\textwidth]{figure/3_3_code3.png}
-%\caption{ }
-\label{3_3_code3}
+\includegraphics[width = .999\textwidth]{figure/3_3_deadband.png}
+\caption{Deadband}
+\label{3_3_deadband}
 \end{figure}
+
+
+However, in theory, it is impossible to remove deadband totally. The aim to use deadband control is:\\
+	
+    (1). Make the frequency value as small as possible in the deadband area, so we can assume that tiny error is no error;
+    
+	(2). Make the deadband area as long as possible, so we can keep the frequency in the system stable in a relative long time. \\
+
+Thus, we need to choose two parameters in our deadband control: acceptable frequency range in deadband area and control results.\\
+
+The acceptable frequency range is a suitable tiny frequency range that we allow deadband occurs. 
+
+For control results, we have three situations. One of them is no deadband control. Another situation is to make error be zero in the deadband area. The last situation is to make the error and the sum of error be zero at the same time. \\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .999\textwidth]{figure/3_3_deadband_code.png}
+\caption{Deadband controller}
+\label{3_3_deadband_code}
+\end{figure}
+
+Finally, as shown in the Figure \textcolor{red}{\ref{3_3_deadband_code}}, we choose the frequency range in the deadband from -0.000001 Hz to 0.000001 Hz and we make the error and the sum of error be zero at the same time after the deadband control starts. Figure \textcolor{red}{\ref{3_3_deadband_result}} shows the comparison without deadband control and with deadband control. It shows that our deadband control is a more suitable solution for the system.\\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .999\textwidth]{figure/3_3_deadband_result.png}
+\caption{With and without deadband control}
+\label{3_3_deadband_result}
+\end{figure}
+
+
+
+
+
+
+
 
 We get the input from the existing smart grid simulator and send output to the existing smart grid simulator via our controller. Thus, a communication layer is formed.\\
 
@@ -331,7 +367,7 @@ If ki does not exist, for instance, kp equalling to 500.1 is unacceptable, accor
 \subsection{Analytical Models} %3.4.2
 The first analytical model will generate two different kinds of excel files. One of them is named as ori.xlsx. This is a file saving all the acceptable points. For another kind of files, their names are related to the value of time delay. For instance, if time delay is 0.01 seconds, the file name will be td\_0.01s\_xlsx. It will store all the acceptable points when delay is 0.01 seconds.\\
 
-Importantly, we define 'SettlingTimeThreshold' , a MATLAB variant, to 0.02, so time it takes for the error between the response and the steady-state response to fall to within 2\% of nominal value.\\
+Importantly, we define 'SettlingTimeThreshold' , a MATLAB variant, to 0.02, so the time will take for the error between the response and the steady-state response to fall to within 2\% of nominal value.\\
 
 \begin{figure}[htbp]
 \centering
@@ -340,12 +376,22 @@ Importantly, we define 'SettlingTimeThreshold' , a MATLAB variant, to 0.02, so t
 \label{3_4_2_code4}
 \end{figure}
 
-In the first analytical model , we check if simulation results are acceptable via our MATLAB program if we have collected data. Firstly, we import data from simulations. Then, we will limit both the overshoot and settling time as required via a MATLAB module: stepinfo. The data will be filtered if overshoot or the settling time is not in the range we set.\\
+In our case, the system will start from 0 second. However, in the analytical model, we can not put all the data into the stepinfo function because we do not want the data without SFC be calculated. Thus, the data stepinfo function gets should starts from the SFC control starting, which is the 150th seconds. \\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .999\textwidth]{figure/3_4_2_chopped.png}
+\caption{MATLAB: chopped the time from 150 sec}
+\label{3_4_2_chopped}
+\end{figure}
+
+
+In the first analytical model named i\_cur\_plot.cur , we check if simulation results are acceptable via our MATLAB program if we have collected data. Firstly, we import data from simulations. Then, we will limit both the overshoot and settling time as required via a MATLAB module: stepinfo. The data will be filtered if overshoot or the settling time is not in the range we set.\\
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_4_2_code5.png}
-%\caption{ }
+\caption{MATLAB: filter unacceptable tuning results}
 \label{3_4_2_code5}
 \end{figure}
 
@@ -472,24 +518,24 @@ Finally, the program will sketch the plots of all acceptable results and will gi
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = .891\textwidth]{figure/4_1_1_a.jpeg}
-\caption{One-line diagram of the test system}
-\label{4_1_1_a}
+\includegraphics[width = .819\textwidth]{figure/4_1_2_a.png}
+\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~300.1, ki = 0.1~300.1, step: 50; Starting time (150s), Ending Time (1100), Settling Time (1050s).}
+\label{4_1_2_a}
 \end{figure}
 
-However, as you can see from Figure \textcolor{red}{\ref{4_1_1_a}}, only two of all the simulations are acceptable. The maximum value of kp is 100.1 and the maximum value of ki is 0.1. \\
+However, as you can see from Figure \textcolor{red}{\ref{4_1_2_a}}, only two of all the simulations are acceptable. The maximum value of kp is 100.1 and the maximum value of ki is 0.1. \\
 
 According to the regulations from the last Chapter, we need to increase the maximum amplifier factor by the step value. \\
 
 For instance, the new range of kp is between 0.1 and 150.1 and the new range of ki is between 0.1 and 50.1. To make a more accurate result, we need to decrease the step at the same time. We set step to 10.0. \\
 
-Finally, we will have another plot as shown in Figure \textcolor{red}{\ref{4_1_1_b}}. \\
+Finally, we will have another plot as shown in Figure \textcolor{red}{\ref{4_1_2_b}}. \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = .891\textwidth]{figure/4_1_1_b.jpeg}
-\caption{One-line diagram of the test system}
-\label{4_1_1_b}
+\includegraphics[width = .819\textwidth]{figure/4_1_2_b.png}
+\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~150.1, ki = 0.1~50.1, step: 10; Starting time (150s), Ending Time (1100s), Settling Time (1050s).}
+\label{4_1_2_b}
 \end{figure}
 
 
@@ -499,13 +545,13 @@ We could set ki in a range of 0.1 and 10.1 with the reason above. However, it is
 
 Thus, we need to apply bisection method on the rang of ki and find the meaningful maximum ki. Detailedly, we range kp from 0.1 to 140.1 and its step is 10.0. We set ki equals to 5.1. The purpose of doing this is to find if there are acceptable results if ki is in the middle of 0.1 and 10.1.\\   
 
-The filtered results are as Figure \textcolor{red}{\ref{4_1_1_c}}. \\
+The filtered results are as Figure \textcolor{red}{\ref{4_1_2_c}}. \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = .891\textwidth]{figure/4_1_1_c.jpeg}
-\caption{One-line diagram of the test system}
-\label{4_1_1_c}
+\includegraphics[width = .819\textwidth]{figure/4_1_2_c.png}
+\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~140.1, step: 10, ki = 5.1; Starting time (150s), Ending Time (1100s), Settling Time (1050s).}
+\label{4_1_2_c}
 \end{figure}
 
 The results shows there are acceptable simulations if ki equals to 5.1. \\
@@ -529,37 +575,37 @@ Another noteworthy detail is we need to keep two significant digits for kp, ki a
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = \textwidth]{figure/4_3_code1.png}
-%\caption{ }
+\caption{Python: import related libraries.}
 \label{4_3_code1}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = \textwidth]{figure/4_3_code2.png}
-%\caption{ }
+\caption{Python: tune PI control.}
 \label{4_3_code2}
 \end{figure}
 
 
 \section{Results} %4.4
-\subsection{Results and Analysis}
+\subsection{Results and Analysis} %4.4.1
 The implement results are as follows. Figure \textcolor{red}{\ref{4_4_1_result1}} shows all the acceptable signals.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = .891\textwidth]{figure/4_4_1_result1.jpeg}
-\caption{}
+\includegraphics[width = .819\textwidth]{figure/4_4_1_result1.png}
+\caption{MATLAB plot: all the acceptable signals.}
 \label{4_4_1_result1}
 \end{figure}
 
 From Figure \textcolor{red}{\ref{4_4_1_result1}}, we can roughly draw a conclusion that the signals are indeed within a reasonable range and it seems that they have finally reached the nominal value. \\
 
-However, we need to check further by choosing one of the signals. For instance, I choose the signal when its kp is 90.1 and its ki is 7.1. The reason I choose this signal is that it is located on the borderline. Results are as follows. \\
+However, we need to check further by choosing one of the signals. For instance, I choose the signal whose kp is 90.1 and its ki is 7.1. The reason I choose this signal is that it is located at the borderline. Results are as follows. \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = .891\textwidth]{figure/4_4_1_result2.jpeg}
-\caption{}
+\includegraphics[width = .819\textwidth]{figure/4_4_1_result2.png}
+\caption{The whole picture: whether the controlled signal will meet the conditions: frequency limit and settling condition}
 \label{4_4_1_result2}
 \end{figure}
 
@@ -568,54 +614,79 @@ From the Figure \textcolor{red}{\ref{4_4_1_result2}} above, we can see that the 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = .891\textwidth]{figure/4_4_1_result3.jpeg}
-\caption{}
+\includegraphics[width = .819\textwidth]{figure/4_4_1_result3.png}
+\caption{Details: check frequency limit.}
 \label{4_4_1_result3}
 \end{figure}
 
-From Figure \textcolor{red}{\ref{4_4_1_result3}}, we can judge its overshoot does do not exceed the maximum allowable value, i.e. 1.002 $p\mu$.
+From Figure \textcolor{red}{\ref{4_4_1_result3}}, we can judge we can judge its overshoot will not exceed the maximum allowable value, i.e. 1.002 $p\mu$, after the signal settled.\\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = .891\textwidth]{figure/4_4_1_result4.jpeg}
-\caption{}
+\includegraphics[width = .819\textwidth]{figure/4_4_1_result4.png}
+\caption{Details: check settling condition.}
 \label{4_4_1_result4}
 \end{figure}
 
 
-From Figure \textcolor{red}{\ref{4_4_1_result4}}, we find that, after the settling time MATLAB calculated, the signal is between the settling time threshold, i.e. between 0.9998 $p\mu$ and 1.002 $p\mu$. \\
+From Figure \textcolor{red}{\ref{4_4_1_result4}}, we find that, after the signal settled, the signal is between the settling time threshold, i.e. 0.9998 $p\mu$ and 1.0002 $p\mu$.\\
 
-With the prove above, we can finally judge that our assumed acceptable simulation results are acceptable. \\
 
-Next, we will show you the relationship between kp and ki. \\
+With the prove above, we can finally judge that our assumed acceptable simulation results are acceptable.\\
 
-\begin{figure*}[htbp]
+Next, we will show you the relationship between kp and ki.\\
+
+\begin{table*}[htbp]
 \centering
-\includegraphics[width = \textwidth]{figure/4_4_ori.pdf}
-\caption{cfqwx}
-\label{4_4_ori}
-\end{figure*}
+\includegraphics[width = \textwidth]{figure/4_4_1_table.pdf}
+\caption{Part of the acceptable results ranked by settling time.}
+\label{4_4_1_table}
+\end{table*}
 
-
-
- Table \textcolor{red}{\ref{4_4_ori}} shows the parameters that make up the acceptable signals, i.e. kp, ki, delay and settling time. It has ranked by the settling time. 
-
+ Table \textcolor{red}{\ref{4_4_1_table}} shows the parameters that make up the acceptable signals, i.e. kp, ki, delay and settling time. It has ranked by the settling time. \\
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = .891\textwidth]{figure/4_4_1_result4.jpeg}
-\caption{}
-\label{4_4_1_result4}
+\includegraphics[width = .819\textwidth]{figure/4_4_1_2d.png}
+\caption{2d plot}
+\label{4_4_1_2d}
 \end{figure}
 
+Table \textcolor{red}{\ref{4_4_1_2d}} draws a 2D graph where kp is horizontal axis and ki is vertical axis. Besides, we highlight the point which gives the minimum settling time as a reference.\\
+
+Analysing the Table \textcolor{red}{\ref{4_4_1_2d}}, we can find:\\
+
+\begin{itemize}
+\item The 2D graph shows a clear borderline which separates the acceptable results and unacceptable results. This is in line with the previous expectation from section 4.2;\\
+
+\item The best point is (130.1, 0.1);\\
+
+\item The best point is in the borderline.  This is not in line with the previous expectation from section 4.2;\\
+
+\item The best point’s kp value is too large. This is not in line with the previous expectation from section 4.2;\\
+
+\item The best point’s ki value is not too large.  This is in line with the previous expectation from section 4.2;\\
+
+\item The worst point, i.e. kp is 10.1 and ki is 1.1, shows in the borderline. This is in line with the previous expectation from section 4.2.\\
+\end{itemize}
+
+Although, for the best point, its kp is the largest to keep the signal can approach the settling status as fast as possible, it is a dangerous situation that will be removed by a higher delay.\\
+
+However, the best point’s ki value is the minimum one, i.e. 0.1, which is “unexpected” before. \\
+
+There are two explanations for this small ki value. The first explanation is that this “small” ki value is not small or is not the smallest because it is assumed that 0.1 is the minimum value of the range of ki at the beginning of the simulation. We do not need to find the real limit value of ki in this case because it will increase the amount of computation by an order of magnitude. There are acceptable results whose kp is smaller than 0.1 but it is not necessary to find them in this case. \\
+
+Another explanation is that the function of the I-term is to help fixing the steady-state error. In fact, steady-state error will not be always shown if only there is a suitable kp being tuned. Besides, a larger ki will produce more oscillations and it will make a signal have a larger settling time. \\
 
 
+\subsection{The Best Tuning Signal} %4.4.2
 
-
-
-
-
-
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/4_4_2_best.png}
+\caption{The best tuning signal}
+\label{4_4_2_best}
+\end{figure}
 
 
 \chapter{Impact of Time Delay}
