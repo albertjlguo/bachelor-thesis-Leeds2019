@@ -429,6 +429,7 @@ to draw a triangle surface plot. Besides, it highlights the results from the sec
 \chapter{Low Time Delay}
 \label{Chapter4} %4
 \section{Hypothesis} %4.1
+\label{section4.1}
 \subsection{Hardware Hypothesis} %4.1.1
 
 In this Chapter, we use the algorithms described in the Chapter 3 to test the well-known Nordic system. One-line diagram of the Nordic test system is  shown in Figure \textcolor{red}{\ref{4_1_1_nordic}}.\\
@@ -560,6 +561,7 @@ Thus, we can set the range of ki between 0.1 and 10.1.
 Besides, we can reset the end time to 240 seconds and the required settling time to 200 seconds since most of the acceptable settling time are smaller than 200 seconds.\\
 
 \section{Expected Outcome} %4.2
+\label{section4.2}
 From discussions before, we know that both kp and ki can not be expanded indefinitely since we have specialised limit for kp and ki in MATLAB program. Thus, firstly, I hope to see a clearly borderline to separate the acceptable results and unacceptable results. The acceptable results will be expressed as blue points in Excel. \\
 
 Secondly, I hope to see a relationship between the best point, which has minimum settling time among all the acceptable results, and other acceptable points. I expect the best point will not in the borderline because the points are unstable in the borderline. \\
@@ -588,6 +590,7 @@ Another noteworthy detail is we need to keep two significant digits for kp, ki a
 
 
 \section{Results} %4.4
+\label{section4.4}
 \subsection{Results and Analysis} %4.4.1
 The implement results are as follows. Figure \textcolor{red}{\ref{4_4_1_result1}} shows all the acceptable signals.
 
@@ -648,7 +651,7 @@ Next, we will show you the relationship between kp and ki.\\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_4_1_2d.png}
-\caption{2d plot}
+\caption{2D plot: All the acceptable tuning results in low time delay.}
 \label{4_4_1_2d}
 \end{figure}
 
@@ -657,17 +660,17 @@ Table \textcolor{red}{\ref{4_4_1_2d}} draws a 2D graph where kp is horizontal ax
 Analysing the Table \textcolor{red}{\ref{4_4_1_2d}}, we can find:\\
 
 \begin{itemize}
-\item The 2D graph shows a clear borderline which separates the acceptable results and unacceptable results. This is in line with the previous expectation from section 4.2;\\
+\item The 2D graph shows a clear borderline which separates the acceptable results and unacceptable results. This is in line with the previous expectation from section \textcolor{red}{\ref{section4.2}};\\
 
 \item The best point is (130.1, 0.1);\\
 
-\item The best point is in the borderline.  This is not in line with the previous expectation from section 4.2;\\
+\item The best point is in the borderline.  This is not in line with the previous expectation from section \textcolor{red}{\ref{section4.2}};\\
 
-\item The best point’s kp value is too large. This is not in line with the previous expectation from section 4.2;\\
+\item The best point’s kp value is too large. This is not in line with the previous expectation from section \textcolor{red}{\ref{section4.2}};\\
 
-\item The best point’s ki value is not too large.  This is in line with the previous expectation from section 4.2;\\
+\item The best point’s ki value is not too large.  This is in line with the previous expectation from section \textcolor{red}{\ref{section4.2}};\\
 
-\item The worst point, i.e. kp is 10.1 and ki is 1.1, shows in the borderline. This is in line with the previous expectation from section 4.2.\\
+\item The worst point, i.e. kp is 10.1 and ki is 1.1, shows in the borderline. This is in line with the previous expectation from section \textcolor{red}{\ref{section4.2}}.\\
 \end{itemize}
 
 Although, for the best point, its kp is the largest to keep the signal can approach the settling status as fast as possible, it is a dangerous situation that will be removed by a higher delay.\\
@@ -689,8 +692,44 @@ Another explanation is that the function of the I-term is to help fixing the ste
 \end{figure}
 
 
+
 \chapter{Impact of Time Delay}
 \label{Chapter5}
+\section{Hypothesis} %5.1
+The hypothesis in this chapter is based on the hypothesis in Section \textcolor{red}{\ref{section4.1}}. \\
+ 
+One of the differences is that it's several delays here, i.e. delay ranges between 0.01 seconds and 0.21 seconds, and the step is 0.01 seconds. \\
+
+It allows having the similar hypothesis with Section \textcolor{red}{\ref{section4.1}} because, in this chapter, it can be seen as an extension of last chapter. In the last chapter, Nordic system is tested in a low delay while, in this chapter, we will increase the delay. \\
+
+An important assumption to allow us keeping other parameters same when increasing the time delay is that a larger time delay will decline the performance of Nordic grid. \\
+
+Another different hypothesis is decreasing the step of ki so that we have more acceptable results. \\
+
+\section{Expected Outcome} %5.2
+From the assumption of a larger delay declining the performance of Nordic grid and the results from Section \textcolor{red}{\ref{section4.4}}, I expect in this chapter,\\
+
+\begin{itemize}
+    \item The acceptable points will less and less if increasing the time delay. \\
+    \item To the best point of different delay, its kp value should be increased when time delay is increased. \\
+\end{itemize}
+
+
+I make the last assumption because I think of my experience of waiting for traffic light. At first I didn't notice the green light until the car behind reminded me. In order to make up for the few seconds I missed, I stepped on the accelerator to increase the speed.\\ 
+
+With the same reason, the signal is faced with time delay problem and it should make up the error by accelerating the speed of it. Thus, kp will increase if time delay increases. \\
+
+\section{Implement} %5.3
+The only difference with Section 4.3 is we need to change the range of time delay. Details are shown as Figure \textcolor{red}{\ref{5_3_code}}. \\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/5_3_code.png}
+\caption{Implement different time delays}
+\label{5_3_code}
+\end{figure}
+
+
 
 
 
