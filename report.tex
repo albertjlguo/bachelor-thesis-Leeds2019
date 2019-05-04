@@ -702,6 +702,7 @@ An important assumption to allow us keeping other parameters same when increasin
 Another different hypothesis is decreasing the step of ki so that we have more acceptable results. \\
 
 \section{Expected Outcome} %5.2
+\label{section5.2}
 From the assumption of a larger delay declining the performance of Nordic grid and the results from Section \textcolor{red}{\ref{section4.4}}, I expect in this chapter,\\
 
 \begin{itemize}
@@ -724,6 +725,53 @@ The only difference with Section 4.3 is we need to change the range of time dela
 \label{5_3_code}
 \end{figure}
 
+
+\section{Results} %5.4
+\subsection{Results and Analysis} %5.4.1
+The final 3D Triangle Surface plot shows in Figure \textcolor{red}{\ref{5_4_1_Outlier}}.\\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/5_4_1_Outlier.png}
+\caption{3D plot: contain outliers}
+\label{5_4_1_Outlier}
+\end{figure}
+
+From Figure \textcolor{red}{\ref{5_4_1_Outlier}}, we can see that there are some outliers here. These outliers can be seen as part of the acceptable results. However, in reality, these outliers can be seen as unexpected points so we can remove them for a better analysis.\\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/5_4_1_without_Outlier1.png}
+\caption{3D plot: contain outliers}
+\label{5_4_1_without_Outlier1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/5_4_1_without_Outlier2.png}
+\caption{3D plot: contain outliers}
+\label{5_4_1_without_Outlier2}
+\end{figure}
+
+
+As seen from Figure above + above, overall, the shape of the 3D plot shows kp and ki will be shrunk together when increasing the time delay. A increasing time delay will remove larger ki. Detailedly, if the controller both has a larger kp and large ki, the simulation results will be recognised as unacceptable points in high probability. If a controller has a high kp but a small ki and the time delay is increased, the simulation results will not be recognised as unacceptable points in a large probability.\\
+
+We rank the average settling time for every tuning situation. We finally find that the signal will approach to the nominal value fastest in average when kp is 100.1 and ki is 0.1.\\
+
+Besides, we can find that for the same ki and ki value, for instance, when kp is 100.1 and ki is 0.1, the settling time has a trend of increasing when time delay is increased. \\
+
+This directly prove the previous expectation on the impact of the time delay from Section \textcolor{red}{\ref{section5.2}}. \\
+
+
+Another important result is showing in the legend bar in the Figure \textcolor{red}{\ref{5_4_1_without_Outlier1}}. The highlighted blue points are the best result for their delay. For example, “Delay = 0.01 sec, kp = 130.1, ki = 0.10, Settling Time = 187.6424sec” in the legend bar means when time delay is 0.01 seconds, the signal will fastest approach to the nominal value if its kp is 130.1 and its ki is 0.10. We find the kp value will be increased if time delay is increased. This is in line with the assumption in Section \textcolor{red}{\ref{section5.2}}.\\
+
+\subsection{The Best Tuning Result} %5.4.2
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/5_4_2.png}
+\caption{MATLAB: Impact of Delay: The Best SFCs vs Without Control}
+\label{5_4_2}
+\end{figure}
 
 
 
