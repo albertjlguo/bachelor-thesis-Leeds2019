@@ -36,7 +36,7 @@ In this project, we focus on PI Control: the most common control algorithm by fa
 
 This project consists of two parts. In the first part, we aim to understand the physical theory behind SFC and PI control and present our efforts at building effective SFC models.\\
 
-In the second part of this project, we test our algorithm in RAMSES\textcolor{red}{\footnote{RAMSES is a time-domain dynamic simulator for future electric power systems. RAMSES document: https://ramses.paristidou.info}} based on Nordic Grid scenario. In particular, 1) how we test our system in a low time delay; 2) how we analyse the impact of different time delays; 3) how we analyse the impact of generator size and 4) how we test Emergency Control and analyse the impact of time delays.\\
+In the second part of this project, we test our algorithm in RAMSES\textcolor{red}{\footnote{RAMSES is a time-domain dynamic simulator for future electric power systems. RAMSES document: https://ramses.paristidou.info}} based on Nordic Grid scenario. In particular, 1) how we test our system in a low time delay; 2) how we analyse the impact of different time delays; 3) how we test Emergency Control and analyse the impact of time delays.\\
 
 \prefacesection{Acknowledgments}
 A special thank to my supervisor Dr Petros Aristidou. He always has a very insightful, high-level view about the field while he is also uncommonly detail oriented and understands the nature of the problems very well. More importantly, Dr Aristidou is an extremely caring and supportive supervisor that I could not have asked for more.\\
@@ -52,8 +52,6 @@ Lastly, I would like to thank other staffs and my fellow schoolmates in School o
 
 
 \afterpreface
-
-
 \chapter{Introduction}
 \section{Motivation} %1.1
 The motivation for doing this project contains a vision of restructuring and sustainability of energy in the future.
@@ -115,22 +113,19 @@ In Chapter \textcolor{red}{\ref{Chapter4}}, we focus on testing the system in a 
 
 In Chapter \textcolor{red}{\ref{Chapter5}}, we discuss the impact of different time delays. We increase the delay and use the range of gain in Chapter 4. We will explain why we think it is reasonable to continue using the range of gain in Chapter 4. In fact, it is logical forward-looking. Then we will predict the simulation results based on the physical theory behind Secondary Frequency Control (SFC) and the results in Chapter 4. Then we present a comprehensive evaluation on the complicated simulation results. We will describe the results with a plotted 3d graph. We will discuss some unpredictable results and some seemingly irregular data. We discuss the risk of the generators, like what we do in Chapter 4, and how to remove unacceptable results. We will finally show a 3d plot and a best simulation result.\\
 
-In Chapter \textcolor{red}{\ref{Chapter6}}, we discuss the impact of generator size. We fix the size of gain and the size of  delay in this chapter and we discuss the reason for doing this. Differently, We only test g1, g3, g4, g5, g9, g10, g11, g12, g13 and g19 as breaker, the generator will disconnected from the grid as the only disturbing factor, based on Section 4.1.1. Before implementing, we predict some expected results based on Section 4.1.1 and understanding on energy and power. We analyse the results and they prove our prediction. We will see the relationship between the output and the size of a generator. We finally analyse if the system will have risk and the relationship between the size of a generator and the chance to have a risk. \\
+In Chapter \textcolor{red}{\ref{Chapter6}}, we test Emergency Control and discuss the impact of different time delays without tuning gains. We will firstly define Emergency Control although we have discussed it in Chapter 2. We predict some results based on Secondary Frequency Control (SFC) and the conclusions in Chapter 4. After implementing and analysing the results, we will discuss why my predictions are “wrong”. We finally do a risk assessment for the system as we did before.\\
 
-In Chapter \textcolor{red}{\ref{Chapter7}}, we test Emergency Control and discuss the impact of different time delays without tuning gains. We will firstly define Emergency Control although we have discussed it in Chapter 2. We predict some results based on Secondary Frequency Control (SFC) and the conclusions in Chapter 4. After implementing and analysing the results, we will discuss why my predictions are “wrong”. We finally do a risk assessment for the system as we did before.\\
 
-We will finally conclude in Chapter \textcolor{red}{\ref{Chapter8}}.\\
+We will finally conclude in Chapter \textcolor{red}{\ref{Chapter7}}.\\
 
 \section{Contributions} %1.3
 The contributions of this thesis are summarised as follows:\\
 \begin{itemize}
   \item I built a communication layer on top of an existing Smart Grid simulator and design a centralised controller for stabilising the system.\\
   
-  \item I researched situations that cause disturbances, including generators interruption, high time delays and blackout. We built a series of efficient models for analysing the performance of the system and remove any unacceptable results. After hundreds of manual data proofreading, these models has demonstrated superior analytical ability.\\
+  \item I researched situations that cause disturbances, including generators interruption, high time delays and blackout. I built a series of efficient models for analysing the performance of the system and remove any unacceptable results. After hundreds of manual data proofreading, these models has demonstrated superior analytical ability.\\
   
   \item I built an optimal controller for stabilising the frequency based on the centralised controller and the analytical models above. This optimal controller has demonstrated superior performance of restoring frequency when disturbances occur in the system.\\
-  
-  \item I learnt other important skills: test-driven development in Python, code modularity and collaborative version control.\\
 \end{itemize}
 
 
@@ -426,6 +421,7 @@ to draw a triangle surface plot. Besides, it highlights the results from the sec
 \section{Hypothesis} %4.1
 \label{section4.1}
 \subsection{Hardware Hypothesis} %4.1.1
+\label{subsection4.1.1}
 
 In this Chapter, we use the algorithms described in the Chapter 3 to test the well-known Nordic system. One-line diagram of the Nordic test system is  shown in Figure \textcolor{red}{\ref{4_1_1_nordic}}.\\
 
@@ -774,18 +770,91 @@ Another important result is showing in the legend bar in the Figure \textcolor{r
 \end{figure}
 
 
-
-
-\chapter{Impact of Generator Size}
-\label{Chapter6}
-
-
 \chapter{Emergency Control}
-\label{Chapter7}
+\label{Chapter6}
+\section{Overview} %6.1
+Emergency  control should be established in emergency conditions to minimize the risk of further uncontrolled separation, loss of generation, or system shutdown. In our case, emergency control should start from a lower point in Primary Frequency Control and use Secondary Frequency Control to restore its frequency to prevent the risk of black out.\\
+
+\section{Hypothesis and Implement} %6.2
+Referencing Figure \textcolor{red}{\ref{4_1_1_without2}} in Subsection \textcolor{red}{\ref{subsection4.1.1}}, we find one of the lowest point, as shown in the Figure below, as our start point of Emergency Control. \\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/6_2_g9.png}
+\caption{Start time of Emergency Control.}
+\label{6_2_g9}
+\end{figure}
+
+We start the Emergency Control from the 9.76th second and will use one of the acceptable tuning results, i.e. kp is 30.1 and ki is 0.1, in Chapter \textcolor{red}{\ref{chapter4}}. The aim of such hypothesises is to test the impact of time delay under the condition of Emergency Control. The simulation will last for 360 seconds.\\
+
+
+
+\section{Expected Outcome} %6.3
+Time delay will disturb the system. A faster controller will be implemented for a larger time delay to eliminate the errors due to the time delay. We already have a detailed discussion in Chapter \textcolor{red}{\ref{chapter5}}. In all, emergency control should not change the conclusion on the impact of time delay although they have different start time and will have different performance under the same tuning condition.\\
+
+\section{Result} % 6.4
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/6_3.png}
+\caption{The impact of time delay of Emergency Control.}
+\label{6_3}
+\end{figure}
+
+As shown in the figure \textcolor{red}{\ref{6_3}}, although there is an outlier, i.e. the settling time is unexpected when delay is 0.10 seconds, we can still conclude that a faster controller will be implemented for a larger time delay to eliminate the errors due to the time delay.\\
+
+\section{Risk Analysis}
+One of the most important parts of Emergency Control is to control and prevent the risk.  In reality, we introduce the speed of output power of a generator. The aim of doing this is to track the moment-to-moment fluctuations in the loads and to correct for the unintended fluctuations in generation.\\
+
+
+The implement method is as follows. In Python function, we can add more cases for specific generators and get their power-time information. For instance, \\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/6_5_code1.png}
+\caption{RAMSES: add cases.}
+\label{6_5_code1}
+\end{figure}
+
+will communicate the simulator and the controller and will collect the power output by g6 into a cur file. So we can use MATLAB program like\\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/6_5_code2.png}
+\caption{MATLAB: collect data.}
+\label{6_5_code2}
+\end{figure}
+
+to communicate the cur file and MATLAB so we can analyse the speed of power output by using modules like stepinfo.\\
+
+Detailedly, in theory, the speed of power output can be defined as\\
+
+$Speed of Power Output = \frac{\delta P}{\delta t}$\\
+
+We need to know the power changes in the related of time changes period. In MATLAB, we can use RiseTime, which calculates the response rising from 10\% to 90\% of the steady-state response, as our time changes. Then, we need to find the power changes during this time period. Similar to the second Figure in Subsection 3.4.2, we use index to search the start time and the end time of RiseTime. Finally,  we can use the start time and the end time to find the related power output so we can find the speed of power output.\\
+
+
+However, in Nordic system, there is no SFC so there is no official data about the limit of the speed of power output. \\
+
+In the United States, a typical large fossil-fired thermal generator may be able to ramp 1\% of its capacity in 1 minute. Thus, we can reference this, i.e. the limit of power output should be controlled under the 1\% of its capacity in 1 minute, to analyse and filter some tuning results in SFC.\\
 
 
 \chapter{Conclusion}
-\label{Chapter8}
+\label{Chapter7}
+In this project, we gave readers a thorough overview of Secondary Frequency Control and PI control: the theories (PART I) and the testings (PART II), as well as how we contributed to the analytical tools to connect the theories and testings.\\
+
+In Chapter \textcolor{red}{\ref{Chapter2}}, we walked through the overview of Frequency Control, including Primary Frequency Control, Secondary Frequency Control and Tertiary Frequency Control. We knew the reasons we need Frequency Control and the mechanisms of the three Frequency Controls. Equally important is we knew the response time and the feature of the three Frequency Controls.\\
+
+In Chapter \textcolor{red}{\ref{Chapter3}}, we covered the theory elements of Secondary Frequency Control and PI control. We introduce the physical theory behind Secondary Frequency Control and the logic of a central control algorithm. We explained we need to simplify the model to remove some conditions that will not effect the simulation results. We introduce the mathematical and physical theory of PID control. Through the frequency problems in the reality, we understood the reasons using P-term and the I-term in SFC and the reasons not using D-term because of amplifying the high component parts in the signal. Then, we introduced the core codes in PI control in Python and how we send the information into the generators to fix the frequency problems. Besides, we introduced the deadband error and discussed the deadband control algorithm. In the last part of this chapter, we introduced our tuning methodology. First, we analysed the impacts of ki and then we introduced bisection method into tuning models. Then, we introduced analytical models written in Python and MATLAB and finally they can be used in filtering unacceptable results according to signal requirements, in generating 2D diagram, and in generating 3D triangle surface plot with multiple needs.\\
+
+In PART II, the key questions we wanted to answer are: Is there any feature of a PI control under the condition of low time delay? What are the impacts of time delay to such a PI controller? Where is the best tuning result? How can we use the idea of Emergency Control to avoid emergency situations?\\
+
+In Chapter \textcolor{red}{\ref{Chapter4}}, we put forward how to assume the conditions, i.e. hypothesis, of the Nordic system and finally, we choose suitable value of kp, ki, delay, start time, end time etc. Then, we discussed the expected outcome based on physical theory of SFC before the simulation starts. Then, we introduced how to tune PI control and finally we showed you the simulation results. We think a larger kp will take a faster response but at the same time it has a chance to exceed the limit of speed of power output.\\
+
+In Chapter \textcolor{red}{\ref{Chapter5}}, like in Chapter 4, we put forward how to assume the conditions of the Nordic system and finally, we choose the range of time delay and keep the condition in Chapter 4. Then, we discussed the expected outcome based on physical theory of SFC before the simulation starts. Then, we introduced how to tune time delay and finally we showed you the simulation results. We think there are some outliers will interference the analysis results so we filtered them. We concluded that acceptable results will be less and less and kp and ki will be shrank to each other with a larger time delay.\\
+
+In chapter \textcolor{red}{\ref{Chapter6}}, we discussed the impact of time delay under the condition of  Emergency Control. We concluded that there is no different for Emergency Control and standard PI control interns of the impact of time delay. Besides, we introduce how to use the idea of Emergency Control to avoid emergency situations by limit the speed of power output. We gave the mathematics equation and related Python codes. Finally, we decide to reference the rule in the United States to limit the speed.\\
+
+I am really excited about the progress that has been made for the past one academic year. At the same time, we also deeply believe there is still a long way to go towards smart grid algorithms, and we are still facing challenges and a lot of open questions that will need to address in the future. One key challenge is that we still do not have a better way to analyse the speed of power out if the ramp time is so small because, basically, the computer program will give a feedback of zero. Normally, the problems like this will be unnoticed in big data simulations.\\
 
 
 \appendix
