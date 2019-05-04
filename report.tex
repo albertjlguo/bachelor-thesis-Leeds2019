@@ -39,9 +39,9 @@ This project consists of two parts. In the first part, we aim to understand the 
 In the second part of this project, we test our algorithm in RAMSES\textcolor{red}{\footnote{RAMSES is a time-domain dynamic simulator for future electric power systems. RAMSES document: https://ramses.paristidou.info}} based on Nordic Grid scenario. In particular, 1) how we test our system in a low time delay; 2) how we analyse the impact of different time delays; 3) how we analyse the impact of generator size and 4) how we test Emergency Control and analyse the impact of time delays.\\
 
 \prefacesection{Acknowledgments}
-A special thank to my supervisor Dr Petros Aristidou. He always has a very insightful, high-level view about the ﬁeld while he is also uncommonly detail oriented and understands the nature of the problems very well. More importantly, Dr Aristidou is an extremely caring and supportive supervisor that I could not have asked for more.\\
+A special thank to my supervisor Dr Petros Aristidou. He always has a very insightful, high-level view about the field while he is also uncommonly detail oriented and understands the nature of the problems very well. More importantly, Dr Aristidou is an extremely caring and supportive supervisor that I could not have asked for more.\\
 
-Collaboration is a big lesson that I learned, and also a precious part of my undergraduate stage. I thank Sultan Alghamdi. He never reserved his minds when I tried to seek his help. I am glad that my research can help part of his doctoral subject. It was a very unique and rewarding experience for me.\\
+Collaboration is a big lesson that I learned, and also a precious part of my undergraduate stage. I thank Sultan Alghamdi. He never reserved his minds when I tried to seek his help. I am glad that my research can help part of his doctoral subject. It was a very unique and rewarding experience for me.\\
 
 I would like to thank Dr Zoran Ikonic. His passionate lecture (ELEC2540 Control Systems) and impressive experiment last year depended my understanding of PI control.\\
 
@@ -149,7 +149,7 @@ If no control is applied, the frequency largely deviates and then reaches a meag
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/2_1_freq.jpeg}
-\caption{Frequency and power control}
+\caption{Frequency and power control.}
 \label{2_1_freq}
 \end{figure}
 
@@ -255,7 +255,7 @@ To the integral of the error,  it is should be realised that using discrete math
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_3_code1.png}
-%\caption{ }
+\caption{Python: PI control algorithm.}
 \label{3_3_code1}
 \end{figure}
 
@@ -266,7 +266,7 @@ Next, we should send output signal to generators through the command,\\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_3_code2.png}
-%\caption{ }
+\caption{Python: send corrections to the generators.}
 \label{3_3_code2}
 \end{figure}
 
@@ -277,7 +277,7 @@ Furthermore, we need to consider deadband control. The deadband refers to the th
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_3_deadband.png}
-\caption{Deadband}
+\caption{Deadband in SFC.}
 \label{3_3_deadband}
 \end{figure}
 
@@ -297,7 +297,7 @@ For control results, we have three situations. One of them is no deadband contro
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_3_deadband_code.png}
-\caption{Deadband controller}
+\caption{Deadband controller.}
 \label{3_3_deadband_code}
 \end{figure}
 
@@ -306,14 +306,9 @@ Finally, as shown in the Figure \textcolor{red}{\ref{3_3_deadband_code}}, we cho
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_3_deadband_result.png}
-\caption{With and without deadband control}
+\caption{Comparison: with and without deadband control.}
 \label{3_3_deadband_result}
 \end{figure}
-
-
-
-
-
 
 
 
@@ -339,7 +334,7 @@ Imagine if we have a 2d plane with the horizontal axis kp and the vertical axis 
   \includegraphics[width= \linewidth]{figure/3_4_1_tune_ki_3.jpeg}
   %\caption{A really Awesome Image}\label{fig:awesome_image3}
 \endminipage
-\caption{PI Control: ki = 0.2; ki = 0.5; ki = 1.3}
+\caption{PI Control: ki = 0.2; ki = 0.5; ki = 1.3.}
 \label{3_4_1_larger_ki}
 \end{figure}
 
@@ -372,7 +367,7 @@ Importantly, we define 'SettlingTimeThreshold' , a MATLAB variant, to 0.02, so t
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_4_2_code4.png}
-%\caption{ }
+\caption{MATLAB: stepinfo function.}
 \label{3_4_2_code4}
 \end{figure}
 
@@ -381,7 +376,7 @@ In our case, the system will start from 0 second. However, in the analytical mod
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_4_2_chopped.png}
-\caption{MATLAB: chopped the time from 150 sec}
+\caption{MATLAB: chopped the time from the 150th sec.}
 \label{3_4_2_chopped}
 \end{figure}
 
@@ -391,7 +386,7 @@ In the first analytical model named i\_cur\_plot.cur , we check if simulation re
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_4_2_code5.png}
-\caption{MATLAB: filter unacceptable tuning results}
+\caption{MATLAB: filter unacceptable tuning results.}
 \label{3_4_2_code5}
 \end{figure}
 
@@ -405,7 +400,7 @@ The third analytical model helps finding the best combination of kp and ki. Firs
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_4_2_code6.png}
-%\caption{ }
+\caption{Python: filter out the tuning results that cannot settled in all delay}
 \label{3_4_2_code6}
 \end{figure}
 
@@ -418,7 +413,7 @@ The fifth analytical model helps plotting a 3D triangle surface plot. In all, it
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .999\textwidth]{figure/3_4_2_code7.png}
-%\caption{ }
+\caption{MATLAB: 3D triangle surface algorithm.}
 \label{3_4_2_code7}
 \end{figure}
 
@@ -470,40 +465,40 @@ g19       & 475.0              \\
 g20       & 4275.0             
 
 \end{tabular}
-\caption{Generators Nominal Power in Nordic}
+\caption{Generators Nominal Power in Nordic.}
 \label{nominalPower}
 \end{table}
 
-After choosing the generators, we need to choose a breaker. The breaker is a generator that will be disconnected to the system. Thus, a breaker is one of the most important impact factors to the grid system. However, I don’t know how to choose a suitable breaker at the beginning and then I try to disconnect them one boy one without Secondary Frequency Control. Results are as follows.\\
+After choosing the generators, we need to choose a breaker. The breaker is a generator that will be disconnected to the system. Thus, a breaker is one of the most important impact factors to the grid system. However, at first, I am not sure how to choose a suitable breaker but then I try to disconnect all of them one by one without Secondary Frequency Control. Results are as Figure \textcolor{red}{\ref{4_1_1_without1}}.\\
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .891\textwidth]{figure/4_1_1_without1.jpeg}
-\caption{One-line diagram of the test system}
+\caption{MATLAB figure: simulation results with different breakers, without SFC.}
 \label{4_1_1_without1}
 \end{figure}
 
-As we can see, g8, g17, g18 and g20 are extremely unstable before 100 seconds and g13 have zero nominal power. Thus, we will choose breaker out of them to make sure we have a smooth testing environment.\\
+As we can see from Figure \textcolor{red}{\ref{4_1_1_without1}}, g8, g17, g18 and g20 are extremely unstable before 100 seconds and g13 have zero nominal power (because it has zero nominal power, from Table \textcolor{red}{\ref{nominalPower}}). Thus, we will choose a breaker out of them to make sure we have a smooth testing environment.\\
 
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .891\textwidth]{figure/4_1_1_without2.jpeg}
-\caption{One-line diagram of the test system}
+\caption{MATLAB figure: choose g9 as breaker.}
 \label{4_1_1_without2}
 \end{figure}
 
-Finally, we choose g9 because it has a larger steady-state error. Thus, the turbines will send more power to the system. It is easier to see the change of kp and ki.\\
+Finally, we choose g9, as shown in Figure \textcolor{red}{\ref{4_1_1_without2}}, because it has a larger steady-state error. Thus, the turbines will send more power to the system. It is easier to see the change of kp and ki.\\
 
 \subsection{Software Hypothesis} %4.1.2
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .891\textwidth]{figure/4_1_1_without3.jpeg}
-\caption{One-line diagram of the test system}
+\caption{MATLAB figure: choose start time for SFC.}
 \label{4_1_1_without3}
 \end{figure}
-Next hypothesis is start time and end time. In the definition of Primary Frequency Control, its power balance will be restored at a lower or higher frequency, thus, from the Figure \textcolor{red}{\ref{4_1_1_without3}}, we can observe that, at t equals to 150 seconds, the power is in balance. Thus, I choose the 150th second at the beginning of Secondary Frequency Control. In the definition of Secondary Frequency Control, the response time of it will takes up to 15 minutes, thus, I choose the 900th second as my temporary end time.\\
+Next hypothesis is about start time and end time. In the definition of Primary Frequency Control, its power balance will be restored at a lower or higher frequency, thus, from the Figure \textcolor{red}{\ref{4_1_1_without3}}, we can observe that, at t equals to 150 seconds, the power is in balance. Thus, I choose the 150th second at the beginning of Secondary Frequency Control. In the definition of Secondary Frequency Control, the response time of it will takes up to 15 minutes, thus, I choose the 900th second as my temporary end time.\\
 
 Since it is a low time delay testing, we can assume that delay is 0.01 seconds. The reason for no choosing zero delay is that, in reality, there will be no such a zero delay scenario.\\
 
@@ -520,7 +515,7 @@ Finally, the program will sketch the plots of all acceptable results and will gi
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_1_2_a.png}
-\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~300.1, ki = 0.1~300.1, step: 50; Starting time (150s), Ending Time (1100), Settling Time (1050s).}
+\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~300.1, ki = 0.1~300.1, step: 50; start time (150s), end time (1100), settling time (1050s).}
 \label{4_1_2_a}
 \end{figure}
 
@@ -535,7 +530,7 @@ Finally, we will have another plot as shown in Figure \textcolor{red}{\ref{4_1_2
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_1_2_b.png}
-\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~150.1, ki = 0.1~50.1, step: 10; Starting time (150s), Ending Time (1100s), Settling Time (1050s).}
+\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~150.1, ki = 0.1~50.1, step: 10; start time (150s), end time (1100s), settling time (1050s).}
 \label{4_1_2_b}
 \end{figure}
 
@@ -551,7 +546,7 @@ The filtered results are as Figure \textcolor{red}{\ref{4_1_2_c}}. \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_1_2_c.png}
-\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~140.1, step: 10, ki = 5.1; Starting time (150s), Ending Time (1100s), Settling Time (1050s).}
+\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~140.1, step: 10, ki = 5.1; start time (150s), end Time (1100s), settling time (1050s).}
 \label{4_1_2_c}
 \end{figure}
 
@@ -724,7 +719,7 @@ The only difference with Section 4.3 is we need to change the range of time dela
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width = .819\textwidth]{figure/5_3_code.png}
+\includegraphics[width = .999\textwidth]{figure/5_3_code.png}
 \caption{Implement different time delays}
 \label{5_3_code}
 \end{figure}
