@@ -1,0 +1,30 @@
+\section{Risk Analysis} % 6.5
+One of the most important parts of Emergency Control is to control and prevent the risk.  In reality, we introduce the speed of output power of a generator. The aim of doing this is to track the moment-to-moment fluctuations in the loads and to correct for the unintended fluctuations in generation.\\
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/6_5_code1.png}
+\caption{RAMSES: add cases.}
+\label{6_5_code1}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/6_5_code2.png}
+\caption{MATLAB: collect data.}
+\label{6_5_code2}
+\end{figure}
+
+The implement methods are as follows. In Python function, we can add more cases for specific generators and get their power-time information. For instance, Figure~\ref{6_5_code1} will communicate the simulator and the controller and collect the power output by g6 into a cur file. So we can use MATLAB program like Figure \textcolor{red}{\ref{6_5_code2}} to communicate the cur file and MATLAB so we can analyse the speed of power output by using modules like stepinfo.\\
+
+
+Detailedly, in theory, the speed of power output can be defined as "Speed of Power Output = $\frac{\Delta P}{\Delta t}$".\\
+
+We need to know the power changes in the related time period. In MATLAB, we can use RiseTime, which calculates the response rising from 10\% to 90\% of the steady-state response, as our time period. Then, we need to find the power changes during this time period. Similar to Figure~\ref{3_4_2_code5} in Subsection~\ref{subsection3.4.2}, we use index to search the start time and the end time of RiseTime. Finally,  we can use the start time and the end time to find the related power output so we can find the speed of power output.\\
+
+
+However, in Nordic system, there is no SFC so there is no official data about the limit of the speed of power output. \\
+
+In the United States, a typical large fossil-fired thermal generator may be able to ramp 1\% of its capacity in 1 minute. Thus, we can reference this, i.e. the limit of power output should be controlled under the 1\% of its capacity in 1 minute, to analyse and filter some tuning results in SFC.\\

@@ -1,0 +1,136 @@
+\documentclass[12pt]{report}
+\usepackage{suthesis-2e}
+\dept{Electronic and Electrical Engineering}
+
+% -- Imports --
+% (general libraries)
+\usepackage{times,latexsym,amsfonts,amssymb,amsmath,graphicx,url,bbm,rotating}
+%\usepackage{fontspec}
+%\setmainfont[Ligatures=TeX]{Cambria.ttf}
+\usepackage{multirow,hhline,stmaryrd,bussproofs,mathtools,siunitx}
+\usepackage{booktabs,xcolor,csquotes,calligra}
+%\usepackage{graphicx}
+%\usepackage{color,soul}
+
+% (custom libraries)
+\usepackage{afterpage}
+\usepackage{longtable}
+%\usepackage{fitch}
+
+
+% (inline references)
+
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+}
+\usepackage{epigraph}
+\renewcommand{\epigraphsize}{\normalsize}
+\setlength{\epigraphwidth}{0.9\textwidth}
+
+
+
+% (tikz)
+\usepackage{soul}
+\definecolor{light-yellow}{RGB}{255, 255, 153}
+\sethlcolor{light-yellow}
+
+% (print algorithms)
+\usepackage[ruled,lined,linesnumbered]{algorithm2e}
+
+
+% Comments for other places.
+\usepackage{footnote}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+
+
+
+% -- Document --
+\begin{document}
+
+% Title
+\title{CENTRALISED CONTROL ALGORITHMS FOR SMART GRID OPERATION}
+\author{Jialeng Guo, version 1.1}
+%\principaladviser{John Parker}
+%\firstreader{John Green}
+%\secondreader{John BigBooty}
+%\thirdreader{Jane Supernumerary} %if needed
+%\fourthreader{Severus Snape} %if needed
+
+
+
+% Preface
+\beforepreface
+\input{preface/abstract.tex}
+\input{preface/ack.tex}
+\afterpreface
+\hypersetup{linkcolor=magenta}
+
+
+
+% -- Sections --
+% Introduction
+\chapter{Introduction}
+\label{chapter:intro}
+\input{chapters/intro/motivation.tex}
+\input{chapters/intro/outline.tex}
+\input{chapters/intro/contributions.tex}
+
+
+% PART I
+\part{Algorithm}
+
+\chapter{An Overview of Frequency Control}
+\label{Chapter2}
+% section:
+\input{chapters/fc_overview/overview.tex}
+
+\chapter{PID Control Algorithm}
+\label{Chapter3}
+% section:
+\input{chapters/pid_algorithm/theory.tex}
+\input{chapters/pid_algorithm/pid_controller.tex}
+\input{chapters/pid_algorithm/pi_model.tex}
+\input{chapters/pid_algorithm/metho.tex}
+
+
+% PART II
+\part{Test Case Scenario (Nordic)}
+
+\chapter{Low Time Delay}
+\label{Chapter4}
+% section:
+\input{chapters/ltd/ltd_hyp.tex}
+\input{chapters/ltd/ltd_exp.tex}
+\input{chapters/ltd/ltd_imp.tex}
+\input{chapters/ltd/ltd_res.tex}
+
+\chapter{Impact of Time Delay}
+\label{Chapter5}
+% section:
+\input{chapters/td_impact/hyp.tex}
+\input{chapters/td_impact/exp.tex}
+\input{chapters/td_impact/imp.tex}
+\input{chapters/td_impact/res.tex}
+
+\chapter{Emergency Control}
+\label{Chapter6}
+% section:
+\input{chapters/ec/ov.tex}
+\input{chapters/ec/hyp_imp.tex}
+\input{chapters/ec/exp.tex}
+\input{chapters/ec/res.tex}
+\input{chapters/ec/rsk_ana.tex}
+
+\chapter{Conclusion}
+\label{Chapter7}
+\input{chapters/conclusion.tex}
+
+% Bibliography
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,ref}
+
+
+\end{document}

@@ -1,0 +1,46 @@
+\section{Results} %5.4
+\subsection{Results and Analysis} %5.4.1
+The final 3D Triangle Surface plot shows in Figure~\ref{5_4_1_Outlier}.\\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/5_4_1_Outlier.png}
+\caption{3D plot: contain outliers}
+\label{5_4_1_Outlier}
+\end{figure}
+
+From Figure~\ref{5_4_1_Outlier}, we can see that there are some outliers here. These outliers can be seen as part of the acceptable results. However, in reality, these outliers can be seen as interference data so we can remove them for a better analysis.\\
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/5_4_1_without_Outlier1.png}
+\caption{3D plot: contain outliers}
+\label{5_4_1_without_Outlier1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/5_4_1_without_Outlier2.png}
+\caption{3D plot: contain outliers}
+\label{5_4_1_without_Outlier2}
+\end{figure}
+
+
+As we can see from Figure~\ref{5_4_1_without_Outlier1}, overall, the shape of the 3D plot shows kp and ki are shrunk together when the time delay is increased. A increasing time delay removes a larger ki. Detailedly, if the controller has a larger kp and a large ki, the simulation results are recognised as unacceptable points in high probability. If a controller has a high kp but a small ki when the time delay is increased, the simulation results will not be recognised as unacceptable points in a large probability.\\
+
+We rank the average settling time for every tuning situation. We finally find that when kp is 100.1 and ki is 0.1, the signal can approach to the nominal value fastest in average.\\
+
+Besides, we can find that for the same ki and ki value, for instance, when kp is 100.1 and ki is 0.1, the settling time has a trend of increasing when time delay is increased. \\
+
+This directly prove the previous expectation on the impact of the time delay from Section~\ref{section5.2}. \\
+
+
+Another important result is showing in the legend bar in the Figure~\ref{5_4_1_without_Outlier1}. The highlighted blue points are the best result for their delay. For example, “Delay = 0.01 sec, kp = 130.1, ki = 0.10, Settling Time = 187.6424sec” in the legend bar means when time delay is 0.01 seconds, the signal fastest approach to the nominal value if its kp is 130.1 and its ki is 0.10. We find the kp value be increased if time delay is increased. This is in line with the assumption in Section~\ref{section5.2}.\\
+
+\subsection{The Best Tuning Result} %5.4.2
+\begin{figure}[htbp]
+\centering
+\includegraphics[width = .819\textwidth]{figure/5_4_2.png}
+\caption{MATLAB: Impact of Delay: The Best SFCs vs Without Control}
+\label{5_4_2}
+\end{figure}
