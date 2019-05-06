@@ -1,23 +1,19 @@
 \documentclass[12pt]{report}
 \usepackage{suthesis}
-%\documentstyle[12pt,suthesis]{report}
 
 % -- Imports --
 % (general libraries)
 \usepackage{times,latexsym,amsfonts,amssymb,amsmath,graphicx,url,bbm,rotating}
 \usepackage{multirow,hhline,stmaryrd,bussproofs,mathtools,siunitx}
 \usepackage{booktabs,xcolor,csquotes,calligra}
-% (custom libraries)
-\usepackage{afterpage}
-\usepackage{longtable}
-\usepackage{fitch}
+
 % (inline references)
-\usepackage{natbib}
-\usepackage{tabularx}
+%\usepackage{natbib}
+%\usepackage{tabularx}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
     colorlinks=true,
-    citecolor=.,
+    citecolor=magenta,
     linkcolor=.,
     urlcolor=blue
 }
@@ -30,22 +26,10 @@
 \usepackage{soul}
 \definecolor{light-yellow}{RGB}{255, 255, 153}
 \sethlcolor{light-yellow}
-\usepackage{tikz}
-\usepackage{tikz-dependency,pifont}
-\usetikzlibrary{shapes.arrows,chains,positioning,automata,trees,calc}
-\usetikzlibrary{patterns,matrix}
-\usetikzlibrary{decorations.pathmorphing,decorations.markings}
-% (print algorithms)
-\usepackage[ruled,lined,linesnumbered]{algorithm2e}
-% (custom)
-\input std-macros.tex
-\input macros.tex
+
 
 % (paper compilation hacks)
-\def\newcite#1{\citet{#1}}
-\def\cite#1{\citep{#1}}
-%\def\newcite#1{\textcite{#1}}
-%\def\cite#1{\autocite{#1}}
+\usepackage{cite}
 \definecolor{darkblue}{rgb}{0.0,0.0,0.4}
 
 
@@ -91,8 +75,8 @@
 
 % Title
 \title{CENTRALISED CONTROL ALGORITHMS FOR SMART GRID OPERATION}
-\author{Jialeng Guo, version 1.1}
-%\principaladviser{John Parker}
+\author{Jialeng Guo, version 1.2}
+%\principaladviser{Petros Aristidou}
 %\firstreader{John Green}
 %\secondreader{John BigBooty}
 %\thirdreader{Jane Supernumerary} %if needed
@@ -102,7 +86,9 @@
 
 % Preface
 \beforepreface
+\hypersetup{linkcolor=magenta}
 \input{preface/abstract.tex}
+\hypersetup{linkcolor=.}
 \input{preface/ack.tex}
 \afterpreface
 \hypersetup{linkcolor=magenta}
@@ -169,7 +155,7 @@
 
 % Bibliography
 \bibliographystyle{IEEEtran}
-\bibliography{IEEEabrv,ref}
+\bibliography{ref}
 
 
 \end{document}
