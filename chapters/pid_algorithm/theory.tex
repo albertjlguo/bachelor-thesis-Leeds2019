@@ -1,25 +1,25 @@
-\section{The physical theory behind Secondary Frequency Control} %3.1
+\section{The Physical Theory behind Secondary Frequency Control} %3.1
 
 From Chapter~\ref{Chapter2}, we mentioned that disturbances occur in the system, there be a distortion in the power balance between that delivered by the turbines and that consumed by the loads. The imbalance is from the kinetic energy of rotating rotors of turbines, generators and motors and, thus, the frequency in the system change. If no control is applied, the frequency largely deviates and then reaches a meagre and steady-state value, due to which the electrical grid is shut down.  
 
-We also mentioned that the system will start Primary Frequency Control firstly and then the frequency will remain at a steady-state value below or above the nominal one. After that, Secondary Frequency Control starts. 
+We also mentioned that the system will start Primary Frequency Control firstly and then the frequency will remain at a steady-state value below or above the nominal one. After that, Secondary Frequency Control starts.\\
 
 The mechanism of Secondary Frequency Control is to restore the frequency to the nominal one. 
 
-Secondary frequency control, or load frequency control (LFC), or automatic generation control (AGC), is an automatic control that restores the frequency back to its nominal value in a centralised way. It's implemented that is activated after the primary frequency control. Typically, it takes 30 seconds to 15 minutes. 
+Secondary Frequency Control (SFC), or Load Frequency Control (LFC), or Automatic Generation Control (AGC), is an automatic control that restores the frequency back to its nominal value in a centralised way. It's implemented that is activated after the primary frequency control. Typically, it takes 30 seconds to 15 minutes. 
 
-\begin{figure*}[htbp]
-\centering
-\includegraphics[width = 0.816\textwidth]{figure/3_1_Equilibrium.pdf}
+\begin{figure}[t]
+\center
+\includegraphics[scale=0.4]{figure/3_1_Equilibrium.pdf}
 \caption{Equilibrium points for an increase in the power demand.}
 \label{3_1_Equilibrium}
-\end{figure*}
+\end{figure}
 
 According to Figure~\ref{3_1_Equilibrium}, frequency value rise when reference power rises. Assumed point 1 is the situation after primary frequency control happens and point 5 has the nominal value of frequency. When trying to raise the reference power a little bit, point 1 shift to point 2. Due to the power rise, the frequency of the system rise, so point 2 move to point 3. Changing more reference power of individual governors move the overall generation characteristic of the system upwards. Eventually, this lead to the restoration of the rated frequency ($f0$). 
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.891\textwidth]{figure/3_1_Functional.png}
+\begin{figure}[t]
+\center
+\includegraphics[scale=0.42]{figure/3_1_Functional.png}
 \caption{Functional diagram of a central regulator.}
 \label{3_1_Functional}
 \end{figure}
@@ -28,9 +28,9 @@ As seen in Figure~\ref{3_1_Functional}, the frequency ($f$) be measured in the l
 
 In this standard case, which ignores the existence of tie-line interchange error, the only condition to remove errors is the frequency deviation ($\Delta f$) equals to zero. 
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width =0.819\textwidth]{figure/3_1_Power.png}
+\begin{figure}[t]
+\center
+\includegraphics[scale=0.27]{figure/3_1_Power.png}
 \caption{Power balance of a control area.}
 \label{3_1_Power}
 \end{figure}
