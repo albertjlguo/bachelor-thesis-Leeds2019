@@ -1,18 +1,18 @@
 \section{Results} %4.4
 \label{section4.4}
 \subsection{Results and Analysis} %4.4.1
-The implement results are as follows. Figure~\ref{4_4_1_result1} shows all the acceptable signals.
+The implement results are as follows. Figure~\ref{4_4_1_result1} shows all the acceptable results.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_4_1_result1.png}
-\caption{MATLAB plot: all the acceptable signals.}
+\caption{MATLAB plot: all the acceptable results.}
 \label{4_4_1_result1}
 \end{figure}
 
-From Figure~\ref{4_4_1_result1}, we can roughly draw a conclusion that the signals are indeed within a reasonable range and it seems that they have finally reached the nominal value.  
+From Figure~\ref{4_4_1_result1}, we can roughly draw a conclusion that the signals are indeed within a reasonable range and it seems that they have finally reached the nominal value.
 
-However, we need to check further by choosing one of the signals. For instance, I choose the signal whose kp is 90.1 and ki is 7.1. The reason I choose this signal is that it is located at the borderline. Results are as follows.  
+However, we need to check further by choosing one of the signals. For instance, I choose the signal whose kp is 90.1 and ki is 7.1. The reason I choose this signal is that it is located at the borderline. Results are as follows.\\
 
 \begin{figure}[htbp]
 \centering
@@ -21,30 +21,37 @@ However, we need to check further by choosing one of the signals. For instance, 
 \label{4_4_1_result2}
 \end{figure}
 
-From the Figure~\ref{4_4_1_result2}, we can see that the overshoot does not exceed 1.002 obviously. But for the settling time, we can not make any conclusion until we see the details.  
+From the Figure~\ref{4_4_1_result2}, we can see that the overshoot does not exceed 1.002 obviously. But for the settling time, we can not make any conclusion until we see the details.\\ 
 
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_4_1_result3.png}
-\caption{Details: check frequency limit.}
+\caption{Check frequency limit.}
 \label{4_4_1_result3}
 \end{figure}
 
-From Figure~\ref{4_4_1_result3}, we can judge that its overshoot does not exceed the maximum allowable value, i.e. 1.002 $p\mu$, after the signal settled. 
+From Figure~\ref{4_4_1_result3}, we can judge that its overshoot does not exceed the maximum allowable value, i.e. 1.002 $p\mu$, after the signal settled.\\
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_4_1_result4.png}
-\caption{Details: check settling condition.}
+\caption{Check settling condition.}
 \label{4_4_1_result4}
 \end{figure}
 
+According to the definition of settling time from MATLAB,
 
-From Figure~\ref{4_4_1_result4}, we find that, after the signal settled, the signal is between the settling time threshold, i.e. 0.9998 $p\mu$ and 1.0002 $p\mu$. 
+\begin{equation}
+    \Delta f_{threshold} = 2\% * (f_{nominal} - f_0)
+\end{equation}
+
+where $\Delta f_{threshold}$ is the threshold for the settled results.
+
+From Figure~\ref{4_4_1_result4}, we find that, after the signal settled, the signal is between the settling time threshold, i.e. 0.9992 $p\mu$ and 1.0008 $p\mu$.\\
 
 
-With the prove above, we can finally say that our assumed acceptable simulation results are acceptable. 
+With the prove above, we can finally say that our assumed acceptable simulation results are acceptable.\\
 
 Next, we show you the relationship between kp and ki. 
 
@@ -55,7 +62,7 @@ Next, we show you the relationship between kp and ki.
 \label{4_4_1_table}
 \end{table*}
 
- Table~\ref{4_4_1_table} shows the parameters that make up the acceptable signals, i.e. kp, ki, delay and settling time. It has ranked by the settling time.  
+Table~\ref{4_4_1_table} shows the parameters that make up the acceptable signals, i.e. kp, ki, delay and settling time. It has ranked by the settling time.  
 
 \begin{figure}[htbp]
 \centering
@@ -79,7 +86,7 @@ Analysing the Table~\ref{4_4_1_2d}, we can find:
 
 \item The best point's ki value is not too large.  This is in line with the previous expectation from section~\ref{section4.2}; 
 
-\item The worst point, i.e. kp is 10.1 and ki is 1.1, shows in the borderline. This is in line with the previous expectation from section~\ref{section4.2}. 
+\item The worst point, i.e. kp is 10.1 and ki is 0.1, shows in the borderline. This is in line with the previous expectation from section~\ref{section4.2}. 
 \end{itemize}
 
 Although, for the best point, its kp is large enough to keep the signal approaching the settling status as fast as possible, it is dangerous that it would be removed by a higher time delay. 

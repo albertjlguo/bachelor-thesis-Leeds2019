@@ -76,22 +76,20 @@ Finally, we choose g9, as shown in Figure~\ref{4_1_1_without2}, because it has a
 \end{figure}
 Next hypothesis is about start time and end time. In the definition of Primary Frequency Control, its power balance will be restored at a lower or higher frequency, thus, from the Figure~\ref{4_1_1_without3}, we can observe that, at the 150th seconds, the frequency is stable. Thus, I choose the 150th second at the beginning of Secondary Frequency Control. In the definition of Secondary Frequency Control, the response time will take up to 15 minutes, thus, I choose the 900th second as my temporary end time. 
 
-Since it is a low time delay testing, we can assume that delay is 0.01 seconds. The reason for no choosing zero delay is that, in reality, there be no such a zero delay scenario. 
+Since it is a low time delay testing, we can assume that delay is 0.01 seconds. The reason for not choosing idea situation (i.e. delay = 0 sec) is that, in reality, there be no such a zero delay scenario. 
 
 Next step, we need to start tuning kp and ki. Following the idea of section~\ref{section3.4}, firstly, we assume a large value as a limit value of kp. Detailedly, we assume the range of kp and ki are both from 0.1 to 300.1 and their steps are both 50.  
 
 Then, we use the designed MATLAB program to check whether the simulation results are acceptable. Detailedly, we set overshoot is smaller than 0.2 percent because it is required that the frequency error should be in range of ±0.1 Hz from Section~\ref{subsection4.1.1} in the Nordic official document. 
 
-We also need to make sure the signal is really settled from 0.9998 to 1.0002 before the end time (i.e. the 900th second), thus, it is necessary to set the required setting time be smaller than the end time so the program will have time to check if the signal is settled. We set the required settling time be 800 seconds.  
+We also need to make sure the signal is really settled from 0.9998 to 1.0002 before the end time (i.e. the 900th second), thus, it is necessary to extend the simulation time and give the program more data to check whether it's settled before 15 minutes. Thus, we set 1000 sec as our end time.
 
-Every signal will be checked whether they are met the settling criteria, i.e. the signal should be in a range of 0.9998 and 1.0002 from the 800th second. 
-
-Finally, the program sketches the plots of all the acceptable results and gives related information in the legend bar.  
+Finally, the program sketches the plots of all the acceptable results and gives related information in the legend bar.\\
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_1_2_a.png}
-\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~300.1, ki = 0.1~300.1, step: 50; start time (150s), end time (1100), settling time (1050s).}
+\caption{Disconnect generator g9: delay = 0.01 sec; kp: from 0.1 to 300.1 (step: 50); ki: from 0.1 to 300.1 (step: 50); start time=150s, end Time=1000s, required settling time=900s.}
 \label{4_1_2_a}
 \end{figure}
 
@@ -106,27 +104,24 @@ Finally, we have another plot as shown in Figure~\ref{4_1_2_b}.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_1_2_b.png}
-\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~150.1, ki = 0.1~50.1, step: 10; start time (150s), end time (1100s), settling time (1050s).}
+\caption{Disconnect generator g9: delay = 0.01 sec; kp: from 0.1 to 150.1 (step: 10); ki: from 0.1 to 50.1 (step: 10); start time=150s, end Time=1000s, required settling time=900s.}
 \label{4_1_2_b}
 \end{figure}
 
 
-Apparently, we have more acceptable results than last simulation because of shrinking the step of kp. We find that the simulations are unacceptable if kp equals to 140.1 or 150.1. Thus, we can finally fix the range of kp between 0.1 and 140.1 and keep the step of kp to 10.  
+Apparently, we have more acceptable results than last simulation because of shrinking the step of kp. We find that the simulations are unacceptable if kp equals to 140.1 or 150.1. Thus, we can finally fix the range of kp between 0.1 and 140.1 and keep the step of kp to 10. We can set ki in a range of 0.1 and 10.1 with the reason above. However, it is possible that the maximum value of ki is still 0.1 if we set the range of ki be from 0.1 and 10.1. If so, then the simulations are meaningless.  
 
-We could set ki in a range of 0.1 and 10.1 with the reason above. However, it is possible the maximum value of ki is still 0.1 if we set the range of ki be from 0.1 and 10.1. Then the simulations are meaningless.  
-
-Thus, we need to apply bisection method again on the range of ki and find the meaningful maximum ki. Detailedly, we range kp from 0.1 to 140.1 and its step is 10.0. We set ki equals to 5.1. The purpose of doing this is to find if there are acceptable results if ki is in the middle of 0.1 and 10.1.    
+Thus, we need to apply bisection method on the range of ki and find the meaningful maximum ki. Detailedly, we range kp from 0.1 to 140.1 and set ki equals to 5.1. The purpose of doing this is to find whether there are acceptable results if ki is in the middle of 0.1 and 10.1.
 
 The filtered results are as Figure~\ref{4_1_2_c}.  
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_1_2_c.png}
-\caption{Disconnect generator g9: delay = 0.01, kp = 0.1~140.1, step: 10, ki = 5.1; start time (150s), end Time (1100s), settling time (1050s).}
+\caption{Disconnect generator g9: delay = 0.01 sec; kp: from 0.1 to 140.1 (step: 10); ki = 5.1; start time=150s, end Time=1000s, required settling time=900s.}
 \label{4_1_2_c}
 \end{figure}
 
-The results shows there are acceptable simulations if ki equals to 5.1.  
+The results shows there are acceptable simulations if ki equals to 5.1. \\
 
-Thus, we can set the range of ki between 0.1 and 10.1. 
-Besides, we can reset the end time to 240 seconds and the required settling time to 200 seconds since most of the acceptable simulations are settled before 200 seconds. 
+Thus, we can set the range of kp between 0.1 to 140.1 (step: 10.0), the range of ki between 0.1 and 10.1 (step: 1.0). The controller will start from 150 seconds and will end at 1000 seconds. We hope the signal can be settled before 900 seconds.
