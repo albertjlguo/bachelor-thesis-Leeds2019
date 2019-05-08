@@ -95,7 +95,7 @@ However, the best point's ki value is 0.1, which is “unexpected” before.
 
 There are two explanations for this small ki value. The first explanation is that this “small” ki value is not small enough or is not the smallest because it is assumed that 0.1 is the minimum value of the range of ki at the beginning of the simulation. We do not need to find the real limit value of ki in this case because it will increase the amount of computation by an order of magnitude. There might be acceptable results whose kp is smaller than 0.1 but it is not necessary to find them in this case.  
 
-Another explanation is that the function of the I-term is to help fixing the steady-state error. In fact, steady-state error will not be always shown if only there is a suitable kp being tuned. Besides, a larger ki will produce more oscillations and it makes a longer settling time.  
+Another explanation is that the function of the I-term is to help fixing the steady-state error. In fact, steady-state error will not be always shown if there is only one suitable kp being tuned. Besides, a larger ki will produce more oscillations and it makes a longer settling time.  
 
 
 \subsection{The Best Tuning Signal} %4.4.2

@@ -23,8 +23,9 @@ Imagine if we have a 2D plane with the horizontal axis kp and the vertical axis 
 
 The reason for this is that neither kp nor ki can be infinitely magnified. Kp is the amplifier factor of D-term and it represents how quickly an error can be corrected. If kp is larger, the overshoot of the corrected signal will be larger. Kp has a limit because there is an acceptable range of frequency with official document. For instance, in Nordic test case scenario, the limit is ±0.2\%. In other words, the range of signal is from 0.998 $p\mu$ to 1.002$p\mu$. 
 
-Ki is the amplifier factor of the I-term. The signal have too many oscillations and it not be settled if we keep increasing the value of ki. 
-However, the signal needs to be settled before a specific time in reality and it makes sure the signal be no chance of excessive oscillation. Thus, ki is limited. 
+Ki is the amplifier factor of the I-term. The signal has too many oscillations and it would not be settled if we keep increasing the value of ki.
+
+However, the signal needs to be settled before a specific time in reality and it makes sure the signal has no chance of excessive oscillation. Thus, ki is limited. 
 
 One of the objectives of this project is to find the best combination of amplifier factors, i.e. kp and ki. To obtain it, we need to find the limit of kp and ki and simulate possible situations in the range. 
 
@@ -34,18 +35,19 @@ Firstly, we tune a large kp, and we test if a new signal is acceptable. To simpl
 
 Secondly, we check if the signal is acceptable if we have simulated data. The purpose of this step is to find the limit of ki. 
 
-If ki exists (i.e. there is one acceptable result at least), for instance, ki equals to 200.1, we need to make sure there be no solutions when increasing ki by its step. Then, we can judge that the limit of the kp is between (200.1 and 200.1 + the step of kp). Thus, we have a range of kp which is between (0.1 and 200.1 + the step of kp). If the step of kp is 10, the range of kp will be from 0.1 to 210.1. Normally, we can directly tune kp and ki between 0.1 and 210.1. 
+If ki exists (i.e. there is one acceptable result at least), for instance, ki equals to 200.1, we need to make sure there are no solutions when increasing ki by its step. Then, we can judge that the limit of the kp is between (200.1 and 200.1 + the step of kp). Thus, we have a range of kp which is between (0.1 and 200.1 + the step of kp). If the step of kp is 10, the range of kp will be from 0.1 to 210.1. Normally, we can directly tune kp and ki between 0.1 and 210.1. 
 
-If ki exists in another way, for instance, kp equals to 200.1 and ki equals to 5.1 when the step of ki is 5.0. The result is acceptable but we need to increase the value of kp to make sure ki not exist when kp equals to (kp + the step of kp). 
+If ki exists in another way, for instance, kp equals to 200.1 and ki equals to 5.1 when the step of ki is 5.0. The result is acceptable but we need to increase the value of kp to make sure ki does not exist when kp equals to (kp + the step of kp). 
 
 If ki does not exist, for instance, there is no acceptable ki when kp is 500.1. According to bisection method, we can test the simulations and tune kp between 0.1 and 250.1. We repeat the method above until we find the limit of kp and ki. 
 
 
 \subsection{Analytical Models} %3.4.2
 \label{subsection3.4.2}
-The first analytical model generates two different kinds of excel files. One of them is named as ori.xlsx. This is a file saving all the acceptable results. For another kind of files, their names are related to the value of time delay. For instance, if time delay is 0.01 seconds, the file name be td\_0.01s\_xlsx. It store all the acceptable results when delay is 0.01 seconds. 
 
-Importantly, we define 'SettlingTimeThreshold' , a MATLAB variant, to 0.02, so the time take for the error between the response and the steady-state response to fall to within 2\% of nominal value. 
+The first analytical model generates two different kinds of excel files. One of them is named as ori.xlsx. This is a file saving all the acceptable results. For another kind of files, their names are related to the value of time delay. For instance, if time delay is 0.01 seconds, the file name be td\_0.01s\_xlsx. It stores all the acceptable results when delay is 0.01 seconds. 
+
+Importantly, we define 'SettlingTimeThreshold', a MATLAB variant, to 0.02, so the time taken for the error between the response and the steady-state response will fall within 2\% of nominal value. 
 
 \begin{figure}[htbp]
 \centering
@@ -54,7 +56,7 @@ Importantly, we define 'SettlingTimeThreshold' , a MATLAB variant, to 0.02, so t
 \label{3_4_2_code4}
 \end{figure}
 
-In our case, the system start from 0 second. However, in the analytical model, we can not put all the data into the stepinfo function because we do not want the data without SFC be calculated. Thus, the data stepinfo function gets should starts from the SFC control starting, which is the 150th seconds.  
+In our case, the system starts from the zeroth second. However, in the analytical model, we can not put all the data into the stepinfo function because the data should be analysed from the beginning of SFC. Thus, the data stepinfo function gets should starts from the SFC control starting, which is the 150th seconds.  
 
 \begin{figure}[htbp]
 \centering
