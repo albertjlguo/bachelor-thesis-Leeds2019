@@ -6,7 +6,7 @@ The implement results are as follows. Figure~\ref{4_4_1_result1} shows all the a
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_4_1_result1.png}
-\caption{MATLAB plot: all the acceptable results.}
+\caption{Low time delay tuning results.}
 \label{4_4_1_result1}
 \end{figure}
 
@@ -17,7 +17,7 @@ However, we need to check further by choosing one of the signals. For instance, 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_4_1_result2.png}
-\caption{The whole picture: whether the controlled signal meet the conditions: frequency limit and settling condition}
+\caption{A random low time delay tuning result}
 \label{4_4_1_result2}
 \end{figure}
 
@@ -27,17 +27,16 @@ From the Figure~\ref{4_4_1_result2}, we can see that the overshoot does not exce
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_4_1_result3.png}
-\caption{Check frequency limit.}
-\label{4_4_1_result3}
+\longcaption{Detail 1 for a random low time delay tuning result}{\label{4_4_1_result3} Detail 1 for a random low time delay tuning result: frequency limit.}
 \end{figure}
 
-From Figure~\ref{4_4_1_result3}, we can judge that its overshoot does not exceed the maximum allowable value, i.e. 1.002 $p\mu$, after the signal settled.\\
+From Figure~\ref{4_4_1_result3}, we can judge that its overshoot does not exceed the maximum allowable value, i.e. 1.002 $p\mu$, after the SFC starts.\\
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width = .819\textwidth]{figure/4_4_1_result4.png}
-\caption{Check settling condition.}
-\label{4_4_1_result4}
+
+\longcaption{Detail 1 for a random low time delay tuning result}{\label{4_4_1_result4} Detail 2 for a random low time delay tuning result: settling condition.}
 \end{figure}
 
 According to the definition of settling time from MATLAB,
@@ -62,7 +61,7 @@ Next, we show you the relationship between kp and ki.
 \label{4_4_1_table}
 \end{table*}
 
-Table~\ref{4_4_1_table} shows the parameters that make up the acceptable signals, i.e. kp, ki, delay and settling time. It has ranked by the settling time.  
+Table~\ref{4_4_1_table} shows the parameters that make up the acceptable signals, i.e. kp, ki, delay and settling time. It has been ranked by the settling time.  
 
 \begin{figure}[htbp]
 \centering
@@ -76,17 +75,17 @@ Table~\ref{4_4_1_2d} draws a 2D graph where kp is horizontal axis and ki is vert
 Analysing the Table~\ref{4_4_1_2d}, we can find: 
 
 \begin{itemize}
-\item The 2D graph shows a clear borderline which separates the acceptable results and unacceptable results. This is in line with the previous expectation from section~\ref{section4.2}; 
+\item The 2D graph shows a clear borderline which separates the acceptable results and unacceptable results. This is in line with the previous expectation from Section~\ref{section4.2}; 
 
 \item The best point is (130.1, 0.1); 
 
-\item The best point is in the borderline.  This is not in line with the previous expectation from section~\ref{section4.2}; 
+\item The best point is in the borderline.  This is not in line with the previous expectation from Section~\ref{section4.2}; 
 
-\item The best point’s kp value is too large. This is not in line with the previous expectation from section~\ref{section4.2}; 
+\item The best point’s kp value is too large. This is not in line with the previous expectation from Section~\ref{section4.2}; 
 
-\item The best point's ki value is not too large.  This is in line with the previous expectation from section~\ref{section4.2}; 
+\item The best point's ki value is not too large.  This is in line with the previous expectation from Section~\ref{section4.2}; 
 
-\item The worst point, i.e. kp is 10.1 and ki is 0.1, shows in the borderline. This is in line with the previous expectation from section~\ref{section4.2}. 
+\item The worst point, i.e. kp is 10.1 and ki is 0.1, appears in the borderline. This is in line with the previous expectation from Section~\ref{section4.2}. 
 \end{itemize}
 
 Although, for the best point, its kp is large enough to keep the signal approaching the settling status as fast as possible, it is dangerous that it would be removed by a higher time delay. 
@@ -98,7 +97,7 @@ There are two explanations for this small ki value. The first explanation is tha
 Another explanation is that the function of the I-term is to help fixing the steady-state error. In fact, steady-state error will not be always shown if there is only one suitable kp being tuned. Besides, a larger ki will produce more oscillations and it makes a longer settling time.  
 
 
-\subsection{The Best Tuning Signal} %4.4.2
+\subsection{The Best Tuning Result} %4.4.2
 
 \begin{figure}[htbp]
 \centering
