@@ -10,7 +10,7 @@ The implement results are as follows. Figure~\ref{4_4_1_result1} shows all the a
 \label{4_4_1_result1}
 \end{figure}
 
-From Figure~\ref{4_4_1_result1}, we can roughly draw a conclusion that the signals are indeed within a reasonable range and it seems that they have finally reached the nominal value.
+From Figure~\ref{4_4_1_result1}, we can roughly draw a conclusion that the signals are indeed within a reasonable range and it seems that they have finally reached the nominal value.\\
 
 However, we need to check further by choosing one of the signals. For instance, I choose the signal whose kp is 90.1 and ki is 7.1. The reason I choose this signal is that it is located at the borderline. Results are as follows.\\
 
@@ -45,14 +45,14 @@ According to the definition of settling time from MATLAB,
     \Delta f_{threshold} = 2\% * (f_{nominal} - f_0)
 \end{equation}
 
-where $\Delta f_{threshold}$ is the threshold for the settled results.
+where $\Delta f_{threshold}$ is the threshold for the settled results.\\
 
 From Figure~\ref{4_4_1_result4}, we find that, after the signal settled, the signal is between the settling time threshold, i.e. 0.9992 $p\mu$ and 1.0008 $p\mu$.\\
 
 
 With the prove above, we can finally say that our assumed acceptable simulation results are acceptable.\\
 
-Next, we show you the relationship between kp and ki. 
+Next, we show you the relationship between kp and ki. \\
 
 \begin{table*}[htbp]
 \centering
@@ -61,7 +61,7 @@ Next, we show you the relationship between kp and ki.
 \label{4_4_1_table}
 \end{table*}
 
-Table~\ref{4_4_1_table} shows the parameters that make up the acceptable signals, i.e. kp, ki, delay and settling time. It has been ranked by the settling time.  
+Table~\ref{4_4_1_table} shows the parameters that make up the acceptable signals, i.e. kp, ki, delay and settling time. It has been ranked by the settling time.  \\
 
 \begin{figure}[htbp]
 \centering
@@ -70,7 +70,7 @@ Table~\ref{4_4_1_table} shows the parameters that make up the acceptable signals
 \label{4_4_1_2d}
 \end{figure}
 
-Table~\ref{4_4_1_2d} draws a 2D graph where kp is horizontal axis and ki is vertical axis. Besides, we highlight the point which gives the minimum settling time as a reference. 
+Table~\ref{4_4_1_2d} draws a 2D graph where kp is horizontal axis and ki is vertical axis. Besides, we highlight the point which gives the minimum settling time as a reference. \\
 
 Analysing the Table~\ref{4_4_1_2d}, we can find: 
 
@@ -90,11 +90,9 @@ Analysing the Table~\ref{4_4_1_2d}, we can find:
 
 Although, for the best point, its kp is large enough to keep the signal approaching the settling status as fast as possible, it is dangerous that it would be removed by a higher time delay. 
 
-However, the best point's ki value is 0.1, which is “unexpected” before.  
+However, the best point's ki value is 0.1, which is “unexpected” before. There are two explanations for this small ki value. The first explanation is that this “small” ki value is not small enough or is not the smallest because it is assumed that 0.1 is the minimum value of the range of ki at the beginning of the simulation. We do not need to find the real limit value of ki in this case because it will increase the amount of computation by an order of magnitude. There might be acceptable results whose kp is smaller than 0.1 but it is not necessary to find them in this case. \\
 
-There are two explanations for this small ki value. The first explanation is that this “small” ki value is not small enough or is not the smallest because it is assumed that 0.1 is the minimum value of the range of ki at the beginning of the simulation. We do not need to find the real limit value of ki in this case because it will increase the amount of computation by an order of magnitude. There might be acceptable results whose kp is smaller than 0.1 but it is not necessary to find them in this case.  
-
-Another explanation is that the function of the I-term is to help fixing the steady-state error. In fact, steady-state error will not be always shown if there is only one suitable kp being tuned. Besides, a larger ki will produce more oscillations and it makes a longer settling time.  
+Another explanation is that the function of the I-term is to help fixing the steady-state error. In fact, steady-state error will not be always shown if there is only one suitable kp being tuned. Besides, a larger ki will produce more oscillations and it makes a longer settling time.  \\
 
 
 \subsection{The Best Tuning Result} %4.4.2
